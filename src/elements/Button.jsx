@@ -14,7 +14,7 @@ const SIZES = {
   `,
   lg: css`
     --button-font-size: 1.25rem;
-    --button-padding: 16px 20px;
+    --button-padding: 20px 50px;
     --button-radius: 12px;
   `,
 }
@@ -37,16 +37,24 @@ const VARIANTS = {
   `,
 };
 
+const BTNBG = {
+  no: css`
+    --button-bg-color: none;
+  `
+}
 
-const Button = ({disabled, size, variants, children}) => {
+
+const Button = ({ disabled, size, variants, btnBg, children }) => {
   const sizeStyle = SIZES[size]
   const variantStyle = VARIANTS[variants]
+  const btnBgdStyle = BTNBG[btnBg]
 
   return (
     <StyledButton
-      disabled={disabled} 
-      sizeStyle={sizeStyle} 
+      disabled={disabled}
+      sizeStyle={sizeStyle}
       variantStyle={variantStyle}
+      btnBgdStyle={btnBgdStyle}
     >
       {children}
     </StyledButton>
@@ -57,20 +65,21 @@ const Button = ({disabled, size, variants, children}) => {
 const StyledButton = styled.button`
   ${(props) => props.sizeStyle}
   ${(props) => props.variantStyle}
+  ${(props) => props.btnBgdStyle}
 
-  margin:0;
+  margin:0 5px;
   border:none;
   cursor: pointer;
   font-size: var(--button-font-size, 1rem);
   padding: var(--button-padding, 12px 16px);
-  border-radius: var(--button-radius, 8px);
-  background: var(--button-bg-color, #eee);
-  color: var(--button-color, #000);
+  border-radius: var(--button-radius, 18px);
+  background: var(--button-bg-color, #EF4C1E);
+  color: var(--button-color, #fff);
 
   &:active,
   &:hover,
   &:focus {
-    background: var(--button-hover-bg-color, #025ce2)
+    background: var(--button-hover-bg-color, #B43917)
   }
 
   &:disabled {

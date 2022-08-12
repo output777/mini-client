@@ -1,11 +1,9 @@
 import React from 'react'
 
-const Layout = ({children}) => {
+const Layout = ({ children }) => {
   return (
-    <div class="container">
-      <div class="notification is-primary">
-        {children}
-      </div>
+    <div class="container mt-0">
+      {children}
     </div>
   )
 }
