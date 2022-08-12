@@ -1,8 +1,12 @@
 import './App.css';
-import Button from './elements/Button';
+import Layout from './components/Layout';
 
 function App() {
-  return <div></div>;
+  return (
+    <Layout>
+      <button class="button">Button</button>
+    </Layout>
+  );
 }
 
 export default App;
