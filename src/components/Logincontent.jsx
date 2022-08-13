@@ -6,10 +6,10 @@ import Button from "../elements/Button"
 const Logincontent = (() => {
     return (
         <div style={{ display: 'flex', alignItems: 'center' }}>
-            <RegiterBG>
+            <RegisterBG>
                 <StyledImg src={BackgroundBG} alt='bg' />
                 <BGh1>Camping</BGh1>
-            </RegiterBG>
+            </RegisterBG>
             <RegisterBox>
                 <Registertitle>Login</Registertitle>
                 <Input className="input" type="email" placeholder="ID" />
@@ -25,8 +25,8 @@ const Logincontent = (() => {
 
 export default Logincontent
 
-const RegiterBG = styled.div`
-    width: 70%;
+const RegisterBG = styled.div`
+    width: 65%;
     height:100vh;
     box-sizing: border-box;
     /* position: relative; */
@@ -54,7 +54,7 @@ const Registertitle = styled.h2`
     letter-spacing: 2px;
 `
 const RegisterBox = styled.div`
-    width : 550px;
+    width : 35%;
     height : 700px;
     display: flex;
     flex-direction: column;

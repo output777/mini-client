@@ -26,7 +26,7 @@ const Registercontent = () => {
 export default Registercontent
 
 const RegisterBG = styled.div`
-    width: 70%;
+    width: 65%;
     height:100vh;
     box-sizing: border-box;
 `
@@ -53,7 +53,7 @@ const Registertitle = styled.h2`
     letter-spacing: 2px;
 `
 const RegisterBox = styled.div`
-    width : 550px;
+    width : 35%;
     height : 700px;
     display: flex;
     flex-direction: column;

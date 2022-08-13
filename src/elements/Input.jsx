@@ -1,13 +1,34 @@
 import styled from 'styled-components';
 
-const Input = (({ className, type, placeholder , value , changehandler, text ,width,height}) => {
+
+
+const Input = (({ id, className, type, placeholder, accept, value, changehandler, text, width }) => {
     return (
         <div className="field">
-            <FormInput className={className} type={type} placeholder={placeholder} width={width} height={height}></FormInput>
+            <FormInput
+                id={id}
+                className={className}
+                type={type}
+                accept={accept}
+                placeholder={placeholder}
+                width={width}
+                onChange={changehandler}
+            />
             <ConfirmP>{text}</ConfirmP>
         </div>
     )
 })
+
+Input.defaultValue = {
+    value: '',
+    defaultValue: '',
+    id: '',
+    name: '',
+    placeholder: '',
+    width: '',
+    changeHandler: null,
+};
+
 export default Input;
 
 const FormInput = styled.input`

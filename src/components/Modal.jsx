@@ -1,25 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components';
 import Button from '../elements/Button';
-import Form from './Form';
 
 
-const Modal = () => {
-  const [register, setRegister] = useState(false);
-  const onClickModalOpenHandler = () => {
-    setRegister(true);
-    console.log(register);
-  }
+const Modal = ({ onClickModalHandler }) => {
 
   return (
-    <>
-      <Form />
-      {register ? <div><Form /></div> :
-        <StyledModalBtn>
-          <Button size='lg' onClickModalOpenHandler={onClickModalOpenHandler}>나만의 캠핑장 등록하기</Button>
-        </StyledModalBtn>
-      }
-    </>
+    <StyledModalBtn>
+      <Button size='lg' onClickModalHandler={onClickModalHandler}>나만의 캠핑장 등록하기</Button>
+    </StyledModalBtn>
   )
 }
 
