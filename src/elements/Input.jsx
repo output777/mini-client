@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+
+
 const Input = (({ id, className, type, placeholder, accept, value, changehandler, text, width }) => {
     return (
         <div className="field">
