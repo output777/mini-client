@@ -2,24 +2,24 @@ import Input from "../elements/Input"
 import styled from "styled-components"
 import BackgroundBG from '../assets/Camp.jpg'
 
-const Registercontent = () => {
+const Logincontent = (() => {
     return (
         <RegiterBG>
             <BGh1>Camping</BGh1>
             <RegisterBox>
-                <Registertitle>SIGN UP</Registertitle>
-                <Input className="input" type="email" placeholder="ID" text="아이디를 입력해주세요"/>
-                <Input className="input" type="email" placeholder="Password" text="비밀번호를 입력해주세요"/>
-                <Input className="input" type="email" placeholder="Confirm Password" text="비밀번호가 일치하지 않습니다"/>
+                <Registertitle>CAMPING</Registertitle>
+                <Input className="input" type="email" placeholder="ID" />
+                <Input className="input" type="password" placeholder="Password" />
                 <ButtonBox>
+                    <button>로그인</button>
                     <button>회원가입</button>
-                    <button>이전</button>
                 </ButtonBox>
             </RegisterBox>
         </RegiterBG>
     )
-}
-export default Registercontent
+})
+
+export default Logincontent
 
 const RegiterBG = styled.div`
     background-image : url(${BackgroundBG});
@@ -48,8 +48,7 @@ const Registertitle = styled.h2`
 const RegisterBox = styled.div`
     width : 550px;
     height : 600px;
-    background-color:white;
-    border-radius: 20px;
+    background-color: white;
     position: absolute;
     top:23%;
     right:15%;
@@ -57,6 +56,7 @@ const RegisterBox = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border-radius: 20px;
     -webkit-box-shadow: 7px 5px 10px 2px rgba(0,0,0,0.45); 
     box-shadow: 7px 5px 10px 2px rgba(0,0,0,0.45);
 `
@@ -65,3 +65,5 @@ const ButtonBox = styled.div`
     flex-direction: row;
     margin-top : 20px;
 `
+
+

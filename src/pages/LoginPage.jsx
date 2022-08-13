@@ -1,10 +1,9 @@
-import Registercontent from "../components/Registercontent"
-
+import Logincontent from "../components/Logincontent"
 
 const LoginPage = (() => {
     return (
         <div>
-            <Registercontent></Registercontent>
+            <Logincontent></Logincontent>
         </div>
     )
 })

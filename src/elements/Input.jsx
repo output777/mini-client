@@ -1,20 +1,23 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-const Input = (({labelText,isHide})=>{
-    return(
-        <div>
-            <label>{labelText}</label>
-            <FormInput></FormInput>
+const Input = (({ className, type, placeholder , value , changehandler, text ,width}) => {
+    return (
+        <div className="field">
+            <FormInput className={className} type={type} placeholder={placeholder} width={width}></FormInput>
+            <ConfirmP>{text}</ConfirmP>
         </div>
-
     )
 })
-
 export default Input;
 
 const FormInput = styled.input`
-    width : 150px;
-    height: 20px;
+    width : ${(props) => props.width};
+    height : ${(props) => props.height};
+    padding : ${(props) => props.padding};
 `
+const ConfirmP = styled.p`
+    color : black;
+    font-size: 12px;
+    margin : 10px 0;
 
- 
+`
