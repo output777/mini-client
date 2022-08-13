@@ -5,15 +5,16 @@ import RegisterPage from "../pages/RegisterPage";
 import { BrowserRouter } from 'react-router-dom';
 import DetailPage from "../pages/DetailPage";
 
-const Router = () =>{
+const Router = () => {
     return (
         <BrowserRouter>
-        <Routes>
-            <Route path='/' element={<LandingPage />}></Route>
-            <Route path='/register' element={<RegisterPage />}></Route>
-            <Route path='/login' element={<LoginPage />}></Route>
-            <Route path='/Detail' element={<DetailPage />}></Route>
-        </Routes>
+            <Routes>
+                <Route path='/' element={<LandingPage />}></Route>
+                <Route path='/register' element={<RegisterPage />}></Route>
+                <Route path='/login' element={<LoginPage />}></Route>
+                <Route path='/detail' element={<DetailPage />}></Route>
+                <Route path='/detail/:id' element={<DetailPage />}></Route>
+            </Routes>
         </BrowserRouter>
     )
 }

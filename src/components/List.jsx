@@ -3,14 +3,22 @@ import Modal from './Modal'
 import styled from 'styled-components';
 import Item from './Item';
 import Form from './Form';
+import { useNavigate } from 'react-router-dom';
 
 const List = () => {
+  let navigate = useNavigate();
   const [register, setRegister] = useState(false);
 
   const onClickModalHandler = () => {
     setRegister((prev) => !prev);
     console.log(register);
   }
+
+  const onClickItemHandler = () => {
+    navigate(`./detail`)
+  }
+
+
   return (
     <>
       {register ?
@@ -20,7 +28,7 @@ const List = () => {
         <div>
           <Modal onClickModalHandler={onClickModalHandler} register={register} />
           <StyledItemList>
-            <Item />
+            <Item onClickItemHandler={onClickItemHandler} />
             <Item />
             <Item />
             <Item />

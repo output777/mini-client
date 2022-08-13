@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import Comment from "./Comment";
 
-const Detailcomment = ()=>{
+const Detailcomment = () => {
     return (
         <Reviewbox>
-            <Comment/>
-            <Comment/>
-            <Comment/>
-            <Comment/>
+            <Comment />
+            <Comment />
+            <Comment />
+            <Comment />
         </Reviewbox>
     )
 }

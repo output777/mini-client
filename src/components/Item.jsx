@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components';
 
-const Item = () => {
+const Item = ({ onClickItemHandler }) => {
   return (
-    <StyledItemBox>
+    <StyledItemBox onClick={onClickItemHandler}>
       <div className="card">
         <div className="card-image">
           <figure className="image">
