@@ -22,6 +22,7 @@ const Background = ({ children }) => {
 
 const StyledBg = styled.div`
   width: 100%;
+  min-width:769px;
   height: 600px;
   background-image: url(${Bg});
   background-size: cover;
