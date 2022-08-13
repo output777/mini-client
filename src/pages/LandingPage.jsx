@@ -1,9 +1,15 @@
 import React from 'react'
 import styled from 'styled-components';
+import Layout from '../components/Layout';
+import Main from '../components/Main';
 
-const LandingPage = ({ children }) => {
+const LandingPage = () => {
   return (
-    <StyledLandingPage>{children}</StyledLandingPage>
+    <StyledLandingPage>
+      <Layout>
+        <Main />
+      </Layout>
+    </StyledLandingPage>
   )
 }
 

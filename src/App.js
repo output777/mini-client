@@ -1,15 +1,9 @@
 import './App.css';
-import Layout from './components/Layout';
-import Main from './components/Main';
-import LandingPage from './pages/LandingPage';
+import Router from './router/Router';
 
 function App() {
   return (
-    <LandingPage>
-      <Layout>
-        <Main />
-      </Layout>
-    </LandingPage>
+    <Router/>
   );
 }
 
