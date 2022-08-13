@@ -44,7 +44,7 @@ const BTNBG = {
 }
 
 
-const Button = ({ disabled, size, variants, btnBg, children, onClickModalOpenHandler }) => {
+const Button = ({ disabled, size, variants, btnBg, children, onClickModalHandler }) => {
   const sizeStyle = SIZES[size]
   const variantStyle = VARIANTS[variants]
   const btnBgdStyle = BTNBG[btnBg]
@@ -55,7 +55,7 @@ const Button = ({ disabled, size, variants, btnBg, children, onClickModalOpenHan
       sizeStyle={sizeStyle}
       variantStyle={variantStyle}
       btnBgdStyle={btnBgdStyle}
-      onClick={onClickModalOpenHandler}
+      onClick={onClickModalHandler}
     >
       {children}
     </StyledButton>
