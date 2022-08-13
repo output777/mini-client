@@ -2,9 +2,8 @@ import Logincontent from "../components/Logincontent"
 
 const LoginPage = (() => {
     return (
-        <div>
-            <Logincontent></Logincontent>
-        </div>
+        <Logincontent />
     )
 })
-export default LoginPage
+export default LoginPage;
+

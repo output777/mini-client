@@ -3,7 +3,7 @@ import Registercontent from "../components/Registercontent"
 const RegisterPage = (() => {
     return (
         <div>
-            <Registercontent></Registercontent>
+            <Registercontent />
         </div>
     )
 })
