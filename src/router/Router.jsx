@@ -3,6 +3,7 @@ import LandingPage from "../pages/LandingPage";
 import { Routes, Route } from "react-router-dom";
 import RegisterPage from "../pages/RegisterPage";
 import { BrowserRouter } from 'react-router-dom';
+import DetailPage from "../pages/DetailPage";
 
 const Router = () =>{
     return (
@@ -11,6 +12,7 @@ const Router = () =>{
             <Route path='/' element={<LandingPage />}></Route>
             <Route path='/register' element={<RegisterPage />}></Route>
             <Route path='/login' element={<LoginPage />}></Route>
+            <Route path='/Detail' element={<DetailPage />}></Route>
         </Routes>
         </BrowserRouter>
     )

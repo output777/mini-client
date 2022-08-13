@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-const Input = (({ className, type, placeholder , value , changehandler, text ,width}) => {
+const Input = (({ className, type, placeholder , value , changehandler, text ,width,height}) => {
     return (
         <div className="field">
-            <FormInput className={className} type={type} placeholder={placeholder} width={width}></FormInput>
+            <FormInput className={className} type={type} placeholder={placeholder} width={width} height={height}></FormInput>
             <ConfirmP>{text}</ConfirmP>
         </div>
     )

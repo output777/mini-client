@@ -12,7 +12,6 @@ const Background = ({ children }) => {
         <p className="title is-1 has-text-white">Discover <br />Your Next Camping</p>
         <p className="subtitle is-4" style={{ color: '#BA9D78' }}>
           추천하고 싶은 나만의 캠핑장을 공유하세요<br />
-
         </p>
       </StyledTitleBox>
     </StyledBg>
