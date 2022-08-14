@@ -29,12 +29,14 @@ const List = () => {
           <Modal onClickModalHandler={onClickModalHandler} register={register} />
           <StyledItemList>
             <Item onClickItemHandler={onClickItemHandler} />
-            <Item />
-            <Item />
-            <Item />
-            <Item />
-            <Item />
-            <Item />
+            <Item onClickItemHandler={onClickItemHandler} />
+            <Item onClickItemHandler={onClickItemHandler} />
+            <Item onClickItemHandler={onClickItemHandler} />
+            <Item onClickItemHandler={onClickItemHandler} />
+            <Item onClickItemHandler={onClickItemHandler} />
+            <Item onClickItemHandler={onClickItemHandler} />
+            <Item onClickItemHandler={onClickItemHandler} />
+
           </StyledItemList>
         </div>
       }

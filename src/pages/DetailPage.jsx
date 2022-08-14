@@ -1,5 +1,5 @@
 import Layout from "../components/Layout"
-import Detailcontent from "../components/Detailcontent"
+import Detailcontent from '../components/Detailcontent'
 import styled from "styled-components"
 import Detailcomment from "../components/Detailcomment"
 import Detailcommentadd from "../components/Detailcommentadd"
@@ -7,19 +7,19 @@ import Header from "../components/Header"
 
 const DetailPage = () => {
     return (
-    <div>
-        <StyledLandingPage>
-            <Layout>
-            <Header></Header>
-                <DetailLayout>
-                    <Detailcontent></Detailcontent>
-                    <Detailcommentadd></Detailcommentadd>
-                    <Detailcomment></Detailcomment>
-                </DetailLayout>
-            </Layout>
-        </StyledLandingPage>
-    </div>
-)
+        <div>
+            <StyledLandingPage className="pb-6">
+                <Layout>
+                    <Header></Header>
+                    <DetailLayout>
+                        <Detailcontent></Detailcontent>
+                        <Detailcommentadd></Detailcommentadd>
+                        <Detailcomment></Detailcomment>
+                    </DetailLayout>
+                </Layout>
+            </StyledLandingPage>
+        </div>
+    )
 }
 
 export default DetailPage
