@@ -29,15 +29,17 @@ export const __addCamps = createAsyncThunk('addCamp', async (payload, thunkAPI) 
   }
 })
 
-export const __deleteCamps = createAsyncThunk("deleteCamp",async (payload, thunkAPI) => {
-    try {
-      const data =  await axios.delete(`http://localhost:3001/camps/${payload}`);
-      console.log(payload)
-      return thunkAPI.fulfillWithValue(payload);
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
-    }
+
+export const __deleteCamp = createAsyncThunk("deleteCamp", async (payload, thunkAPI) => {
+  try {
+    const data = await axios.delete(`http://localhost:3001/camps/${payload}`);
+    console.log(payload)
+    return thunkAPI.fulfillWithValue(payload);
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error);
   }
+}
+
 );
 
 
@@ -72,18 +74,20 @@ const campSlice = createSlice({
       state.error = action.payload;
     },
     //  deleteCamp
-    [__deleteCamps.pending]: (state) => {
+
+    [__deleteCamp.pending]: (state) => {
       state.isLoading = true;
     },
-    [__deleteCamps.fulfilled]: (state, action) => {
-      state.isLoading = false; 
+    [__deleteCamp.fulfilled]: (state, action) => {
+      state.isLoading = false;
       console.log(state.camps)
       console.log(action)
-      state.camps.filter(camp=> camp.id == action.payload)
+      state.camps = state.camps.filter(camp => camp.id !== action.payload)
     },
-    [__deleteCamps.rejected]: (state, action) => {
-      state.isLoading = false; 
-      state.error = action.payload; 
+    [__deleteCamp.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+
     },
 
 
