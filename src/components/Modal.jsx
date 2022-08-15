@@ -7,7 +7,7 @@ const Modal = ({ onClickModalHandler }) => {
 
   return (
     <StyledModalBtn>
-      <Button size='lg' onClickModalHandler={onClickModalHandler}>나만의 캠핑장 등록하기</Button>
+      <Button size='lg' onClickHandler={onClickModalHandler}>나만의 캠핑장 등록하기</Button>
     </StyledModalBtn>
   )
 }

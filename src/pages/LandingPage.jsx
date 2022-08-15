@@ -17,6 +17,7 @@ export default LandingPage;
 
 const StyledLandingPage = styled.div`
   width:100%;
+  min-height:100vh;
   height: 100%;
   background: linear-gradient(90deg, rgba(19,41,55,1) 30%, rgba(27,62,82,1) 77%);
 `

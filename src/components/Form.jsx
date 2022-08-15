@@ -1,56 +1,86 @@
+
+import React, { useEffect } from 'react'
 import { useState } from 'react';
 import styled from 'styled-components';
 import Button from '../elements/Button';
 import Input from '../elements/Input';
 import { BsImages } from 'react-icons/bs'
-import { useDispatch, useSelector } from 'react-redux';
-import { __getCamps, __postCamps } from '../redux/modules/campSlice';
+
+import { useDispatch } from 'react-redux/es/exports';
+import { __addCamps } from '../redux/modules/campSlice';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 
 const Form = ({ onClickModalHandler }) => {
-  const dispatch = useDispatch()
-  const navigate = useNavigate();
-  // const camps = useSelector(state => state.camps)
-  const [imgUrl, setImageUrl] = useState('')
-  const [title, setTitle] = useState('')
-  const [location , setLocation] = useState('')
-  const [review , setReview] = useState('')
-  const number = 5
+  const dispatch = useDispatch();
+  let navigate = useNavigate();
+  const [isDisabled, setIsDisabled] = useState(true)
+  const [camp, setCamp] = useState({
+    title: '',
+    img: '',
+    location: '',
+    review: ''
+  })
 
-  console.log(title,imgUrl,location,review)
+  const changehandler = (e) => {
+    const { value, name } = e.target;
+    setCamp({
+      ...camp,
+      [name]: value
+    });
+  }
 
-  useEffect(()=>{
-    dispatch(__getCamps())
-  },[dispatch])
 
   const onImageUploadCancleHandler = () => {
-    setImageUrl('');
+    setCamp({
+      title: '',
+      img: '',
+      location: '',
+      review: ''
+    });
   }
 
-  const onClickaddCamp = () =>{
-    dispatch(__postCamps({ title:title,img:imgUrl,location:location,review:review}));
-    onClickModalHandler()
-  }
+
+  const onClickAddCampHandler = () => {
+    dispatch(__addCamps(camp));
+    onClickModalHandler();
+  };
+
+
+  useEffect(() => {
+    if (camp.title === ''
+      || camp.img === ''
+      || camp.location === ''
+      || camp.location === '캠핑 지역을 골라주세요'
+      || camp.review === ''
+    ) {
+      return setIsDisabled(true)
+    } else {
+      return setIsDisabled(false)
+    }
+  }, [camp])
+
 
   return (
     <StyledFormBox>
       <div className="field py-4 px-6">
         <label className="label is-size-5">제목</label>
         <div className="control">
-          <Input className="input" type="text" value={title} changehandler={(e)=>setTitle(e.target.value)} placeholder="나만의 캠핑장을 알려주세요" />
+
+          <Input className="input" name='title' type="text" placeholder="나만의 캠핑장을 알려주세요" changehandler={(e) => changehandler(e)} />
+
         </div>
       </div>
 
 
       <div className="field py-4 px-6">
         <label className="label is-size-5">이미지</label>
-        {imgUrl === ''
+        {camp.img === ''
           ? <label htmlFor="ex_file" className='is-size-6 p-2' style={{ width: '100%', cursor: 'pointer', display: 'block' }}><BsImages /> 클릭하세요</label>
-          : <div>이미지 파일: {imgUrl} <Button onClickModalHandler={onImageUploadCancleHandler}>취소</Button></div>}
+          : <div>이미지 파일: {camp.img} <Button onClickHandler={onImageUploadCancleHandler}>취소</Button></div>}
         <div className="control">
           <Input
             id="ex_file"
+            name='img'
             className="input"
             type="file"
             accept="image/jpg, image/png, image/jpeg"
@@ -64,7 +94,9 @@ const Form = ({ onClickModalHandler }) => {
         <label className="label is-size-5">위치</label>
         <div className="control">
           <div className="select">
-            <select value={location} onChange={(e)=>setLocation(e.target.value)}>
+
+            <select name="location" onChange={(e) => changehandler(e)}>
+
               <option>캠핑 지역을 골라주세요</option>
               <option>서울</option>
               <option>경기도</option>
@@ -81,17 +113,21 @@ const Form = ({ onClickModalHandler }) => {
       <div className="field py-4 px-6">
         <label className="label is-size-5">나만의 캠프 리뷰 메시지</label>
         <div className="control">
-          <textarea className="textarea" placeholder="메시지를 입력해주세요" value={review} onChange={(e)=>setReview(e.target.value)}></textarea>
+
+          <textarea className="textarea" name="review" placeholder="메시지를 입력해주세요" onChange={(e) => changehandler(e)} ></textarea>
+
         </div>
       </div>
 
 
       <div className="field is-grouped py-4 px-6">
         <div className="control">
-          <Button className="button is-link" onClickModalHandler={()=>onClickaddCamp()}>Submit</Button>
+
+          <Button className="button is-link" isDisabled={isDisabled} onClickHandler={onClickAddCampHandler}>Submit</Button>
+
         </div>
         <div className="control">
-          <Button className="button is-link is-light" onClickModalHandler={onClickModalHandler}>Cancel</Button>
+          <Button className="button is-link is-light" onClickHandler={onClickModalHandler} >Cancel</Button>
         </div>
       </div>
     </StyledFormBox >
