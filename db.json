@@ -1,30 +1,10 @@
 {
   "camps": [
     {
-      "title": "1",
-      "img": "C:\\fakepath\\denys-nevozhai-63Znf38gnXk-unsplash.jpg",
-      "location": "강원도",
-      "review": "2",
-      "id": 1
-    },
-    {
-      "title": "ㄴㅁㅇ",
-      "img": "C:\\fakepath\\jonathan-forage-1azAjl8FTnU-unsplash.jpg",
-      "location": "강원도",
-      "review": "ㅁㄴㅇㅁㄴㅇㅁㄴ",
-      "id": 2
-    },
-    {
-      "title": "231213",
-      "img": "C:\\fakepath\\denys-nevozhai-63Znf38gnXk-unsplash.jpg",
-      "location": "경상도",
-      "review": "24",
-      "id": 3
-    },
-    {
-      "title": "232",
-      "img": "C:\\fakepath\\denys-nevozhai-63Znf38gnXk-unsplash.jpg",
+      "title": "add",
+      "img": "C:\\fakepath\\메인페이지.png",
       "location": "경기도",
+
       "review": "213",
       "id": 4
     },

@@ -12,22 +12,19 @@ const List = () => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
   const [register, setRegister] = useState(false);
-
   const { camps } = useSelector((state) => state.camps)
-  console.log('camps', camps)
+  // const campsID = camps.map((camp)=>camp.id)
+  // console.log('camps', campsID)
 
   const onClickModalHandler = () => {
     setRegister((prev) => !prev);
-  }
-
-  const onClickItemHandler = () => {
-    navigate(`./detail`)
   }
 
   useEffect(() => {
     dispatch(__getCamps())
   }, [dispatch])
 
+  
   return (
     <>
       {register ?
@@ -37,6 +34,7 @@ const List = () => {
         <div>
           <Modal onClickModalHandler={onClickModalHandler} />
           <StyledItemList>
+
             {camps.length !== 0 && camps.map((data) => (
               <Item
                 key={data.id}
@@ -45,9 +43,9 @@ const List = () => {
                 location={data.location}
                 title={data.title}
                 review={data.review}
-                onClickItemHandler={onClickItemHandler}
               />
             ))}
+
 
           </StyledItemList>
         </div>

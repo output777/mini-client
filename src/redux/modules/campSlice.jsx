@@ -29,6 +29,7 @@ export const __addCamps = createAsyncThunk('addCamp', async (payload, thunkAPI) 
   }
 })
 
+
 export const __deleteCamp = createAsyncThunk("deleteCamp", async (payload, thunkAPI) => {
   try {
     const data = await axios.delete(`http://localhost:3001/camps/${payload}`);
@@ -38,6 +39,7 @@ export const __deleteCamp = createAsyncThunk("deleteCamp", async (payload, thunk
     return thunkAPI.rejectWithValue(error);
   }
 }
+
 );
 
 
@@ -72,6 +74,7 @@ const campSlice = createSlice({
       state.error = action.payload;
     },
     //  deleteCamp
+
     [__deleteCamp.pending]: (state) => {
       state.isLoading = true;
     },
@@ -84,6 +87,7 @@ const campSlice = createSlice({
     [__deleteCamp.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
+
     },
 
 

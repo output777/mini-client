@@ -1,8 +1,19 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Camping from '../assets/imgs/Camping.jpg'
 
-const Item = ({ id, img, location, title, review, onClickItemHandler }) => {
+
+const Item = ({ id, img, location, title, review }) => {
+  const navigate = useNavigate();
+
+  const onClickItemHandler = () => {
+    // e.preventdefault();
+    navigate(`./detail/${id}`)
+  }
+
+
+
   return (
     <StyledItemBox onClick={onClickItemHandler}>
       <div className="card">
@@ -15,10 +26,11 @@ const Item = ({ id, img, location, title, review, onClickItemHandler }) => {
           <div className="media">
             <div className="media-content">
               <p className="title is-4">{title}</p>
-              <p className="subtitle is-6">지역: {location}</p>
+
+              <p className="subtitle is-6">지역:{location}</p>
+
             </div>
           </div>
-
           <div className="content">
             {review}
             <br />

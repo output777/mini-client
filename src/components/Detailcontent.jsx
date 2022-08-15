@@ -2,7 +2,24 @@ import reviewimg from "../assets/imgs/Camping.jpg"
 import styled from "styled-components"
 import {FaMapMarkerAlt} from 'react-icons/fa'
 import Button from "../elements/Button"
-const Detailcontent = () => {
+import { useDispatch } from "react-redux"
+import { __deleteCamps, __getCamps } from "../redux/modules/campSlice"
+import { useNavigate, useParams } from "react-router-dom"
+
+
+const Detailcontent = ({camps}) => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    console.log(...camps)
+    
+    const {id} = useParams();
+    console.log(id);
+    
+
+    const onClickDeleteCampHandler = () => {
+        dispatch(__deleteCamps(id));
+        navigate('/')
+    }
 
     return (
     <div>
@@ -12,11 +29,11 @@ const Detailcontent = () => {
         <Maincontent>
             <Buttonbox>
             <Button size='sm'>수정하기</Button>
-            <Button size='sm'>삭제하기</Button>
+            <Button size='sm' onClickHandler={onClickDeleteCampHandler}>삭제하기</Button>
             </Buttonbox>
-            <TilteContent>항해99 지옥캠프</TilteContent>
-            <PlaceContent><FaMapMarkerAlt color="#EF4C1E"/>서울시 강남구 어쩌구저쩌구</PlaceContent>
-            <p>캠핑장 소개 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima inventore voluptatibus corrupti iusto non! Omnis voluptatum repellat saepe, ab recusandae corrupti ipsa, aspernatur reprehenderit quaerat sunt veritatis accusamus totam vitae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, velit deleniti debitis autem eveniet quas, fuga ab nihil natus ipsum placeat. Iusto excepturi ipsam quasi quisquam earum, nam possimus exercitationem.</p>
+            <TilteContent>{camps.title}</TilteContent>
+            <PlaceContent><FaMapMarkerAlt color="#EF4C1E"/>{camps.location}</PlaceContent>
+            <p>{camps.review}</p>
         </Maincontent>
     </div>
     )
