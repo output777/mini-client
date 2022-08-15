@@ -4,39 +4,27 @@ import styled from 'styled-components';
 import Item from './Item';
 import Form from './Form';
 import { useNavigate } from 'react-router-dom';
-
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { useDispatch } from 'react-redux/es/hooks/useDispatch';
 import { __getCamps } from '../redux/modules/campSlice';
 
 const List = () => {
   const dispatch = useDispatch();
-
   let navigate = useNavigate();
-
-
-
-  console.log(camps)
-
   const [register, setRegister] = useState(false);
-
   const { camps } = useSelector((state) => state.camps)
-  console.log('camps', camps)
+  // const campsID = camps.map((camp)=>camp.id)
+  // console.log('camps', campsID)
 
   const onClickModalHandler = () => {
     setRegister((prev) => !prev);
   }
 
-  const onClickItemHandler = () => {
-    navigate(`./detail`)
-  }
-
-
   useEffect(() => {
     dispatch(__getCamps())
   }, [dispatch])
 
-
+  
   return (
     <>
       {register ?
@@ -55,7 +43,6 @@ const List = () => {
                 location={data.location}
                 title={data.title}
                 review={data.review}
-                onClickItemHandler={onClickItemHandler}
               />
             ))}
 
