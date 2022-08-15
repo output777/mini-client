@@ -36,6 +36,7 @@ export default Item;
 
 const StyledItemBox = styled.div`
   margin: 3rem 1rem;
-  width: 300px;
+  width: calc(25% - 2rem);
+  min-width:256px;
   height: auto;
 `
