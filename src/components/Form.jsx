@@ -29,7 +29,6 @@ const Form = ({ onClickModalHandler }) => {
     });
   }
 
-
   const onImageUploadCancleHandler = () => {
     setCamp({
       title: '',
@@ -38,7 +37,6 @@ const Form = ({ onClickModalHandler }) => {
       review: ''
     });
   }
-
 
   const onClickAddCampHandler = () => {
     dispatch(__addCamps(camp));
@@ -85,7 +83,7 @@ const Form = ({ onClickModalHandler }) => {
             type="file"
             accept="image/jpg, image/png, image/jpeg"
             placeholder="이미지를 넣으려면 클릭하세요"
-            changehandler={(e) => setImageUrl(e.target.value)}
+            changehandler={(e) => changehandler(e)}
           />
         </div>
       </div>
