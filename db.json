@@ -4,8 +4,51 @@
       "title": "add",
       "img": "C:\\fakepath\\메인페이지.png",
       "location": "경기도",
-      "review": "adad",
-      "id": 1
+
+      "review": "213",
+      "id": 4
+    },
+    {
+      "title": "23213",
+      "img": "C:\\fakepath\\denys-nevozhai-63Znf38gnXk-unsplash.jpg",
+      "location": "충청도",
+      "review": "123213",
+      "id": 5
+    },
+    {
+      "title": "123213",
+      "img": "C:\\fakepath\\denys-nevozhai-63Znf38gnXk-unsplash.jpg",
+      "location": "충청도",
+      "review": "124124214",
+      "id": 6
+    },
+    {
+      "title": "12412412",
+      "img": "C:\\fakepath\\dusty-barnes-oZO5lqtAlgA-unsplash.jpg",
+      "location": "충청도",
+      "review": "124124",
+      "id": 7
+    },
+    {
+      "title": "124214124",
+      "img": "C:\\fakepath\\dusty-barnes-oZO5lqtAlgA-unsplash.jpg",
+      "location": "전라도",
+      "review": "124124214",
+      "id": 8
+    },
+    {
+      "title": "ㅁㄴㅇㅁㄴㅇ",
+      "img": "C:\\fakepath\\jonathan-forage-1azAjl8FTnU-unsplash.jpg",
+      "location": "강원도",
+      "review": "ㄴㅁㅇㅁㄴㅇ",
+      "id": 9
+    },
+    {
+      "title": "2",
+      "img": "C:\\fakepath\\takahiro-taguchi-8F59AdH6WKk-unsplash.jpg",
+      "location": "경기도",
+      "review": "23",
+      "id": 10
     }
   ]
 }

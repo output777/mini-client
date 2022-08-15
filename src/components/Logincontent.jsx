@@ -1,9 +1,30 @@
+import { useState } from "react"
 import Input from "../elements/Input"
 import styled from "styled-components"
 import BackgroundBG from '../assets/imgs/Camp.jpg'
 import Button from "../elements/Button"
+import axios from "axios"
 
 const Logincontent = (() => {
+    const [id, setId] = useState('');
+    const [password, setPassword] = useState('');
+
+
+
+    const onLoginHandler = async () => {
+        const login = {
+            username: id,
+            password: password,
+        }
+        try {
+            const data = await axios.post('http://13.125.104.11:8080/api/member/login', login)
+            console.log(data);
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <div style={{ display: 'flex', alignItems: 'center' }}>
             <RegisterBG>
@@ -12,10 +33,10 @@ const Logincontent = (() => {
             </RegisterBG>
             <RegisterBox>
                 <Registertitle>Login</Registertitle>
-                <Input className="input" type="email" placeholder="ID" />
-                <Input className="input" type="password" placeholder="Password" />
+                <Input className="input" type="email" placeholder="ID" value={id} changehandler={(e) => setId(e.target.value)} />
+                <Input className="input" type="password" placeholder="Password" value={password} changehandler={(e) => setPassword(e.target.value)} />
                 <ButtonBox>
-                    <Button>로그인</Button>
+                    <Button onClickHandler={onLoginHandler}>로그인</Button>
                     <Button>회원가입</Button>
                 </ButtonBox>
             </RegisterBox>
