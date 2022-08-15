@@ -7,6 +7,8 @@ const initialState = {
   error: null,
 };
 
+
+
 export const __getCamps = createAsyncThunk('getCamps', async (payload, thunkAPI) => {
   try {
     const data = await axios.get('http://localhost:3001/camps')
@@ -27,11 +29,13 @@ export const __addCamps = createAsyncThunk('addCamp', async (payload, thunkAPI) 
   }
 })
 
+
 const campSlice = createSlice({
   name: 'camps',
   initialState,
   reducers: {},
   extraReducers: {
+
     // getCamps
     [__getCamps.pending]: (state) => {
       state.isLoading = true;
@@ -56,6 +60,7 @@ const campSlice = createSlice({
       state.isLoading = true;
       state.error = action.payload;
     }
+
   }
 });
 

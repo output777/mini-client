@@ -1,9 +1,11 @@
+
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 import styled from 'styled-components';
 import Button from '../elements/Button';
 import Input from '../elements/Input';
 import { BsImages } from 'react-icons/bs'
+
 import { useDispatch } from 'react-redux/es/exports';
 import { __addCamps } from '../redux/modules/campSlice';
 import { useNavigate } from 'react-router-dom';
@@ -27,6 +29,7 @@ const Form = ({ onClickModalHandler }) => {
     });
   }
 
+
   const onImageUploadCancleHandler = () => {
     setCamp({
       title: '',
@@ -35,6 +38,7 @@ const Form = ({ onClickModalHandler }) => {
       review: ''
     });
   }
+
 
   const onClickAddCampHandler = () => {
     dispatch(__addCamps(camp));
@@ -55,12 +59,15 @@ const Form = ({ onClickModalHandler }) => {
     }
   }, [camp])
 
+
   return (
     <StyledFormBox>
       <div className="field py-4 px-6">
         <label className="label is-size-5">제목</label>
         <div className="control">
+
           <Input className="input" name='title' type="text" placeholder="나만의 캠핑장을 알려주세요" changehandler={(e) => changehandler(e)} />
+
         </div>
       </div>
 
@@ -78,7 +85,7 @@ const Form = ({ onClickModalHandler }) => {
             type="file"
             accept="image/jpg, image/png, image/jpeg"
             placeholder="이미지를 넣으려면 클릭하세요"
-            changehandler={(e) => changehandler(e)}
+            changehandler={(e) => setImageUrl(e.target.value)}
           />
         </div>
       </div>
@@ -87,7 +94,9 @@ const Form = ({ onClickModalHandler }) => {
         <label className="label is-size-5">위치</label>
         <div className="control">
           <div className="select">
+
             <select name="location" onChange={(e) => changehandler(e)}>
+
               <option>캠핑 지역을 골라주세요</option>
               <option>서울</option>
               <option>경기도</option>
@@ -104,14 +113,18 @@ const Form = ({ onClickModalHandler }) => {
       <div className="field py-4 px-6">
         <label className="label is-size-5">나만의 캠프 리뷰 메시지</label>
         <div className="control">
+
           <textarea className="textarea" name="review" placeholder="메시지를 입력해주세요" onChange={(e) => changehandler(e)} ></textarea>
+
         </div>
       </div>
 
 
       <div className="field is-grouped py-4 px-6">
         <div className="control">
+
           <Button className="button is-link" isDisabled={isDisabled} onClickHandler={onClickAddCampHandler}>Submit</Button>
+
         </div>
         <div className="control">
           <Button className="button is-link is-light" onClickHandler={onClickModalHandler} >Cancel</Button>

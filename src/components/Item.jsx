@@ -2,7 +2,9 @@ import React from 'react'
 import styled from 'styled-components';
 import Camping from '../assets/imgs/Camping.jpg'
 
+
 const Item = ({ id, img, locationon, title, review, onClickItemHandler }) => {
+
   return (
     <StyledItemBox onClick={onClickItemHandler}>
       <div className="card">
@@ -14,13 +16,17 @@ const Item = ({ id, img, locationon, title, review, onClickItemHandler }) => {
         <div className="card-content">
           <div className="media">
             <div className="media-content">
+
               <p className="title is-4">{title}</p>
               <p className="subtitle is-6">@{locationon}</p>
+
             </div>
           </div>
 
           <div className="content">
+
             {review}
+
             <br />
           </div>
         </div>

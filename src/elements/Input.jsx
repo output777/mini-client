@@ -14,6 +14,7 @@ const Input = (({ id, name, className, type, placeholder, accept, value, changeh
                 placeholder={placeholder}
                 width={width}
                 onChange={changehandler}
+                value={value}
             />
             <ConfirmP>{text}</ConfirmP>
         </div>
