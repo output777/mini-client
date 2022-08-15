@@ -44,18 +44,19 @@ const BTNBG = {
 }
 
 
-const Button = ({ disabled, size, variants, btnBg, children, onClickModalHandler }) => {
+const Button = ({ isDisabled, size, variants, btnBg, children, onClickHandler }) => {
   const sizeStyle = SIZES[size]
   const variantStyle = VARIANTS[variants]
   const btnBgdStyle = BTNBG[btnBg]
 
+
   return (
     <StyledButton
-      disabled={disabled}
+      disabled={isDisabled}
       sizeStyle={sizeStyle}
       variantStyle={variantStyle}
       btnBgdStyle={btnBgdStyle}
-      onClick={onClickModalHandler}
+      onClick={onClickHandler}
     >
       {children}
     </StyledButton>
@@ -77,11 +78,11 @@ const StyledButton = styled.button`
   background: var(--button-bg-color, #EF4C1E);
   color: var(--button-color, #fff);
 
-  &:active,
+  /* &:active,
   &:hover,
   &:focus {
     background: var(--button-hover-bg-color, #B43917)
-  }
+  } */
 
   &:disabled {
     cursor: default;

@@ -1,19 +1,60 @@
 {
-  "posts": [
+  "camps": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "title": "1",
+      "img": "C:\\fakepath\\denys-nevozhai-63Znf38gnXk-unsplash.jpg",
+      "location": "강원도",
+      "review": "2",
+      "id": 1
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "title": "ㄴㅁㅇ",
+      "img": "C:\\fakepath\\jonathan-forage-1azAjl8FTnU-unsplash.jpg",
+      "location": "강원도",
+      "review": "ㅁㄴㅇㅁㄴㅇㅁㄴ",
+      "id": 2
+    },
+    {
+      "title": "231213",
+      "img": "C:\\fakepath\\denys-nevozhai-63Znf38gnXk-unsplash.jpg",
+      "location": "경상도",
+      "review": "24",
+      "id": 3
+    },
+    {
+      "title": "232",
+      "img": "C:\\fakepath\\denys-nevozhai-63Znf38gnXk-unsplash.jpg",
+      "location": "경기도",
+      "review": "213",
+      "id": 4
+    },
+    {
+      "title": "23213",
+      "img": "C:\\fakepath\\denys-nevozhai-63Znf38gnXk-unsplash.jpg",
+      "location": "충청도",
+      "review": "123213",
+      "id": 5
+    },
+    {
+      "title": "123213",
+      "img": "C:\\fakepath\\denys-nevozhai-63Znf38gnXk-unsplash.jpg",
+      "location": "충청도",
+      "review": "124124214",
+      "id": 6
+    },
+    {
+      "title": "12412412",
+      "img": "C:\\fakepath\\dusty-barnes-oZO5lqtAlgA-unsplash.jpg",
+      "location": "충청도",
+      "review": "124124",
+      "id": 7
+    },
+    {
+      "title": "124214124",
+      "img": "C:\\fakepath\\dusty-barnes-oZO5lqtAlgA-unsplash.jpg",
+      "location": "전라도",
+      "review": "124124214",
+      "id": 8
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }

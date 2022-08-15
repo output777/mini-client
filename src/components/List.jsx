@@ -1,23 +1,32 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Modal from './Modal'
 import styled from 'styled-components';
 import Item from './Item';
 import Form from './Form';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux/es/hooks/useSelector';
+import { useDispatch } from 'react-redux/es/hooks/useDispatch';
+import { __addCamps, __getCamps } from '../redux/modules/campSlice';
 
 const List = () => {
+  const dispatch = useDispatch();
   let navigate = useNavigate();
   const [register, setRegister] = useState(false);
 
+  const { camps } = useSelector((state) => state.camps)
+  console.log('camps', camps)
+
   const onClickModalHandler = () => {
     setRegister((prev) => !prev);
-    console.log(register);
   }
 
   const onClickItemHandler = () => {
     navigate(`./detail`)
   }
 
+  useEffect(() => {
+    dispatch(__getCamps())
+  }, [dispatch])
 
   return (
     <>
@@ -26,16 +35,19 @@ const List = () => {
           <Form onClickModalHandler={onClickModalHandler} />
         </StyledFormBox> :
         <div>
-          <Modal onClickModalHandler={onClickModalHandler} register={register} />
+          <Modal onClickModalHandler={onClickModalHandler} />
           <StyledItemList>
-            <Item onClickItemHandler={onClickItemHandler} />
-            <Item onClickItemHandler={onClickItemHandler} />
-            <Item onClickItemHandler={onClickItemHandler} />
-            <Item onClickItemHandler={onClickItemHandler} />
-            <Item onClickItemHandler={onClickItemHandler} />
-            <Item onClickItemHandler={onClickItemHandler} />
-            <Item onClickItemHandler={onClickItemHandler} />
-            <Item onClickItemHandler={onClickItemHandler} />
+            {camps.length !== 0 && camps.map((data) => (
+              <Item
+                key={data.id}
+                id={data.id}
+                img={data.img}
+                location={data.location}
+                title={data.title}
+                review={data.review}
+                onClickItemHandler={onClickItemHandler}
+              />
+            ))}
 
           </StyledItemList>
         </div>

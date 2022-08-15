@@ -2,13 +2,14 @@ import styled from 'styled-components';
 
 
 
-const Input = (({ id, className, type, placeholder, accept, value, changehandler, text, width }) => {
+const Input = (({ id, name, className, type, placeholder, accept, value, changehandler, text, width }) => {
     return (
         <div className="field">
             <FormInput
                 id={id}
                 className={className}
                 type={type}
+                name={name}
                 accept={accept}
                 placeholder={placeholder}
                 width={width}
