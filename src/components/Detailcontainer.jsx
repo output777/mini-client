@@ -12,9 +12,9 @@ const Detailcontainer = () => {
     const dispatch = useDispatch()
     const { camps } = useSelector((state) => state.camps)
 
-    // useEffect(()=>{
-    //     dispatch(__getCamps())
-    // },[camps])
+    useEffect(()=>{
+        dispatch(__getCamps())
+    },[dispatch])
 
     return (
         <div>

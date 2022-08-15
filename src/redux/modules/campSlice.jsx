@@ -79,7 +79,7 @@ const campSlice = createSlice({
       state.isLoading = false; 
       console.log(state.camps)
       console.log(action)
-      state.camps = state.camps.filter(camp=> camp.id !== action.payload)
+      state.camps.filter(camp=> camp.id == action.payload)
     },
     [__deleteCamps.rejected]: (state, action) => {
       state.isLoading = false; 

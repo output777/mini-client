@@ -4,19 +4,21 @@ import {FaMapMarkerAlt} from 'react-icons/fa'
 import Button from "../elements/Button"
 import { useDispatch } from "react-redux"
 import { __deleteCamps, __getCamps } from "../redux/modules/campSlice"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
 
 const Detailcontent = ({camps}) => {
     const dispatch = useDispatch();
-    console.log(camps)
+    const navigate = useNavigate();
+    console.log(...camps)
+    
     const {id} = useParams();
     console.log(id);
     
 
     const onClickDeleteCampHandler = () => {
         dispatch(__deleteCamps(id));
-        // navigate('/')
+        navigate('/')
     }
 
     return (
@@ -27,7 +29,7 @@ const Detailcontent = ({camps}) => {
         <Maincontent>
             <Buttonbox>
             <Button size='sm'>수정하기</Button>
-            <Button size='sm' onClickHandler={onClickDeleteCampHandler()}>삭제하기</Button>
+            <Button size='sm' onClickHandler={onClickDeleteCampHandler}>삭제하기</Button>
             </Buttonbox>
             <TilteContent>{camps.title}</TilteContent>
             <PlaceContent><FaMapMarkerAlt color="#EF4C1E"/>{camps.location}</PlaceContent>
