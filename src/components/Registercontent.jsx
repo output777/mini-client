@@ -11,14 +11,19 @@ const Registercontent = () => {
                 <StyledImg src={BackgroundBG} alt='bg' />
             </RegisterBG>
             <RegisterBox>
-                <Registertitle>SIGN UP</Registertitle>
-                <Input className="input" type="email" placeholder="ID" text="아이디를 입력해주세요" />
-                <Input className="input" type="email" placeholder="Password" text="비밀번호를 입력해주세요" />
-                <Input className="input" type="email" placeholder="Confirm Password" text="비밀번호가 일치하지 않습니다" />
-                <ButtonBox>
-                    <Button>회원가입</Button>
-                    <Button>이전</Button>
-                </ButtonBox>
+                <div>
+                    <Registertitle>SIGN UP</Registertitle>
+                    <IDbox>
+                        <Input className="input" type="email" placeholder="ID" text="아이디를 입력해주세요" width='200px'/>
+                        <Button>중복확인</Button>
+                    </IDbox>
+                    <Input className="input" type="email" placeholder="Password" text="비밀번호를 입력해주세요" width='200px' />
+                    <Input className="input" type="email" placeholder="Confirm Password" text="비밀번호가 일치하지 않습니다" width='200px'/>
+                    <ButtonBox>
+                        <Button>회원가입</Button>
+                        <Button>이전</Button>
+                    </ButtonBox>
+                </div>
             </RegisterBox>
         </div >
     )
@@ -47,14 +52,13 @@ const BGh1 = styled.h1`
     color:orange;
 `
 const Registertitle = styled.h2`
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     font-size: 2rem;
     color : black;
     letter-spacing: 2px;
 `
 const RegisterBox = styled.div`
     width : 35%;
-    height : 700px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -64,4 +68,9 @@ const ButtonBox = styled.div`
     display: flex;
     flex-direction: row;
     margin-top : 20px;
+`
+const IDbox = styled.div`
+    display: flex;
+    align-items: flex-start;
+    margin-bottom:-10px;
 `
