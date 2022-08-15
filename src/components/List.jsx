@@ -6,7 +6,7 @@ import Form from './Form';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { useDispatch } from 'react-redux/es/hooks/useDispatch';
-import { __addCamps, __getCamps } from '../redux/modules/campSlice';
+import { __getCamps } from '../redux/modules/campSlice';
 
 const List = () => {
   const dispatch = useDispatch();
