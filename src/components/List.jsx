@@ -1,12 +1,21 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Modal from './Modal'
 import styled from 'styled-components';
 import Item from './Item';
 import Form from './Form';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { __getCamps } from '../redux/modules/campSlice';
 
 const List = () => {
+  const dispatch = useDispatch()
+  const camps = useSelector(state => state.camps.camps)
   let navigate = useNavigate();
+
+
+
+  console.log(camps)
+
   const [register, setRegister] = useState(false);
 
   const onClickModalHandler = () => {
@@ -17,7 +26,9 @@ const List = () => {
   const onClickItemHandler = () => {
     navigate(`./detail`)
   }
-
+  useEffect(()=>{
+    dispatch(__getCamps())
+  },[dispatch])
 
   return (
     <>
@@ -28,15 +39,9 @@ const List = () => {
         <div>
           <Modal onClickModalHandler={onClickModalHandler} register={register} />
           <StyledItemList>
-            <Item onClickItemHandler={onClickItemHandler} />
-            <Item onClickItemHandler={onClickItemHandler} />
-            <Item onClickItemHandler={onClickItemHandler} />
-            <Item onClickItemHandler={onClickItemHandler} />
-            <Item onClickItemHandler={onClickItemHandler} />
-            <Item onClickItemHandler={onClickItemHandler} />
-            <Item onClickItemHandler={onClickItemHandler} />
-            <Item onClickItemHandler={onClickItemHandler} />
-
+            {camps.length !== 0 && camps.map((camp)=>(
+              <Item key={camp.id} camp={camp}onClickItemHandler={onClickItemHandler} />)
+            )}
           </StyledItemList>
         </div>
       }

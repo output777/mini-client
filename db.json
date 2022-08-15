@@ -1,19 +1,53 @@
 {
-  "posts": [
+  "camps": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "title": "adawdad",
+      "img": "",
+      "location": "강원도",
+      "review": "adwawd",
+      "id": 1
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "title": "awdawd",
+      "img": "",
+      "location": "",
+      "review": "awdawd",
+      "id": 2
+    },
+    {
+      "title": "adawd",
+      "img": "",
+      "location": "",
+      "review": "adawd",
+      "id": 3
+    },
+    {
+      "title": "adwd",
+      "img": "",
+      "location": "경상도",
+      "review": "adad",
+      "id": 4
+    },
+    {
+      "title": "awdad",
+      "img": "",
+      "location": "충청도",
+      "review": "awdad",
+      "id": 5
+    },
+    {
+      "title": "awdawdad",
+      "img": "",
+      "location": "전라도",
+      "review": "awdawd",
+      "id": 6
+    },
+    {
+      "title": "awdawd",
+      "img": "",
+      "location": "충청도",
+      "review": "awdawd",
+      "id": 7
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }
