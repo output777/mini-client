@@ -55,6 +55,20 @@
       "location": "전라도",
       "review": "124124214",
       "id": 8
+    },
+    {
+      "title": "ㅁㄴㅇㅁㄴㅇ",
+      "img": "C:\\fakepath\\jonathan-forage-1azAjl8FTnU-unsplash.jpg",
+      "location": "강원도",
+      "review": "ㄴㅁㅇㅁㄴㅇ",
+      "id": 9
+    },
+    {
+      "title": "2",
+      "img": "C:\\fakepath\\takahiro-taguchi-8F59AdH6WKk-unsplash.jpg",
+      "location": "경기도",
+      "review": "23",
+      "id": 10
     }
   ]
 }
