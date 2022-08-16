@@ -42,7 +42,7 @@ const StyledLandingPage = styled.div`
 const DetailLayout = styled.div`
     width : 1000px;
     background-color: white;
-    padding: 40px;
+    padding: 30px;
     margin: auto;
     border-radius: 20px;
 `
