@@ -26,8 +26,10 @@ const Logincontent = (() => {
         try {
             await axios.post('http://13.125.227.32/api/member/login', login)
                 .then((res) => {
-                    console.log(res.data);
-                    console.log(res);
+                    // console.log(res.headers.authorization);
+                    // console.log('res', res);
+                    navigate('/')
+                    localStorage.setItem('token', res.headers.authorization);
                     setFailLogin('');
                 })
         } catch (error) {

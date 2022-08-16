@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const initialState = {
   camps: [],
+  user: '',
   isLoading: false,
   error: null,
 };
@@ -10,10 +11,16 @@ const initialState = {
 
 export const __getCamps = createAsyncThunk('getCamps', async (_, thunkAPI) => {
   try {
-    const data = await axios.get('http://localhost:3001/camps')
-    // console.log('data', data);
-    return thunkAPI.fulfillWithValue(data.data);
+    const config = {
+      headers: {
+        Authorization: localStorage.getItem('token')
+      }
+    }
+    const data = await axios.get('http://13.125.227.32/api/camp', config)
+    console.log('data', data);
+    return thunkAPI.fulfillWithValue({ headers: data.headers, data: data.data });
   } catch (error) {
+    console.log('error', error)
     return thunkAPI.rejectWithValue(error)
   }
 })
@@ -67,7 +74,11 @@ const campSlice = createSlice({
     },
     [__getCamps.fulfilled]: (state, action) => {
       state.isLoading = true;
-      state.camps = action.payload;
+      console.log('action.payload', action.payload);
+      // console.log(action.payload.data);
+      // console.log(action.payload.headers.nickname);
+      state.camps = action.payload.data;
+      state.user = action.payload.headers.nickname;
     },
     [__getCamps.rejected]: (state, action) => {
       state.isLoading = true;

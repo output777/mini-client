@@ -111,6 +111,7 @@ const Registercontent = () => {
         try {
             const data = await axios.post('http://13.125.227.32/api/member/signup', newRegister)
             console.log(data);
+            navigate('/login')
         } catch (error) {
             console.log(error)
         }
@@ -170,7 +171,7 @@ const Registercontent = () => {
                     />
                     <ButtonBox>
                         <Button onClickHandler={onRegisterHandler} isDisabled={registerBtn} >회원가입</Button>
-                        <Button onClickHandler={() => navigate('/login')}>로그인</Button>
+                        <Button onClickHandler={() => navigate('/login')}>이전</Button>
                     </ButtonBox>
                 </form>
             </RegisterBox>
