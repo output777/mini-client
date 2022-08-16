@@ -122,7 +122,6 @@ const Form = ({ onClickModalHandler }) => {
         <label className="label is-size-5">위치</label>
         <div className="control">
           <div className="select">
-
             <select name="location" onChange={(e) => onChangeLocationHandler(e)}>
               <option>캠핑 지역을 골라주세요</option>
               <option>서울</option>

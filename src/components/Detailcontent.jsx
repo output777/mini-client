@@ -15,6 +15,23 @@ const Detailcontent = ({ camps }) => {
     const {id} = useParams();
     const camp = camps.find((camp)=>camp.id)
     const [isEdit,setIsEdit] = useState(false)
+    const [EditTitle , setEditTitle] = useState('')
+    const [EditLocation , setEditLocation] = useState('')
+    const [EditReview , setEditReview] = useState('')
+
+    const onChangeTitleHandler = (e) =>{
+        const {value} = e.target;
+        setEditTitle(value)
+    }
+    console.log(EditLocation)
+    const onChangeLocationHandler = (e) =>{
+        const {value} = e.target;
+        setEditLocation(value)
+    }
+    const onChangeReviewHandler = (e) =>{
+        const {value} = e.target;
+        setEditReview(value)
+    }
     
     const onClickDeleteCampHandler = (e) => {
         if(!isEdit){
@@ -30,14 +47,14 @@ const Detailcontent = ({ camps }) => {
         return setIsEdit(!isEdit)
     }
     }
-
     const onClickUpdateCampHandler = () =>{
-        setIsEdit(!isEdit)
-        dispatch(__updateCamp({id:camp.id , title:camp.title , location:camp.location , review:camp.review}));
-        
+        setIsEdit(true)
     }
 
-
+    const onClickUpdateHandler = () => {
+        setIsEdit(false)
+        dispatch(__updateCamp({id:camp.id , title:camp.title , location:camp.location , review:camp.review}));
+    }
     return (
 
     <div>
@@ -45,25 +62,42 @@ const Detailcontent = ({ camps }) => {
             <Reviewimg src={reviewimg} alt="" />
         </Mainbox>
         <Maincontent>
-            <Buttonbox>
-            <Button size='sm' onClickHandler={onClickUpdateCampHandler}>{isEdit?'수정완료' : '수정하기'}</Button>
-            <Button size='sm' onClickHandler={onClickDeleteCampHandler}>{isEdit?'수정취소' : '삭제하기'}</Button>
-            </Buttonbox>
+            
 
             {isEdit ? (
             <>
-            <TilteContent><Input className="input" type='text' placeholder='제목' width='250px'></Input></TilteContent>
-            <PlaceContent><Input className="input" type='text' placeholder='지역' width='250px'></Input></PlaceContent>
-            <p><Input className="input" type='text' placeholder='리뷰' width='5000px'></Input></p>
+            <Buttonbox>
+            <Button size='sm' onClickHandler={onClickUpdateHandler}>수정완료</Button>
+            <Button size='sm' onClickHandler={onClickDeleteCampHandler}>수정취소</Button>
+            </Buttonbox>
+            <TilteContent><Input className="input" type='text' placeholder='제목' width='250px' value={EditTitle} changehandler={onChangeTitleHandler}></Input></TilteContent>
+            <PlaceContent>
+                <div className="select">
+                <select value={EditLocation} onChange={(e) => onChangeLocationHandler(e)} style={{fontSize : '15px'}}>
+                 <option>캠핑 지역을 골라주세요</option>
+                 <option>서울</option>
+                 <option>경기도</option>
+                 <option>강원도</option>
+                 <option>충청도</option>
+                 <option>경상도</option>
+                 <option>전라도</option>
+                 <option>제주도</option>
+                </select>
+                </div>
+                </PlaceContent>
+            <p><Input className="input" type='text' placeholder='리뷰' width='800px' value={EditReview} changehandler={onChangeReviewHandler}></Input></p>
             </>)
             : (
             <>
-            <TilteContent>{camp.title}</TilteContent>
-            <PlaceContent><FaMapMarkerAlt color="#EF4C1E"/>{camp.location}</PlaceContent>
+            <Buttonbox>
+            <Button size='sm' onClickHandler={onClickUpdateCampHandler}>수정하기</Button>
+            <Button size='sm' onClickHandler={onClickDeleteCampHandler}>삭제하기</Button>
+            </Buttonbox>
+            <TilteContent>{camp.title}{EditTitle}</TilteContent>
+            <PlaceContent><FaMapMarkerAlt color="#EF4C1E"/>{camp.location}{EditLocation}</PlaceContent>
             <p>{camp.review}</p>
             </>)
             }
-            
         </Maincontent>
     </div>
 
