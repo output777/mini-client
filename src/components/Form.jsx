@@ -28,7 +28,7 @@ const Form = ({ onClickModalHandler }) => {
     location: '',
     review: ''
   })
-  
+
 
 
 
@@ -140,7 +140,7 @@ const Form = ({ onClickModalHandler }) => {
         <label className="label is-size-5">나만의 캠프 리뷰 메시지</label>
         <div className="control">
 
-          <textarea className="textarea" name="review" placeholder="메시지를 입력해주세요" onChange={(e) => onChangeReviewHandler(e)} ></textarea>
+          <textarea className="textarea" name="review" placeholder="메시지를 입력해주세요" onChange={(e) => onChangeReviewHandler(e)} style={{ resize: 'none' }} ></textarea>
 
         </div>
       </div>

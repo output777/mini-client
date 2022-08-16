@@ -16,7 +16,7 @@ const Item = ({ id, img, location, title, review }) => {
 
   return (
     <StyledItemBox onClick={onClickItemHandler}>
-      <div className="card">
+      <div className="card" style={{ height: '300px' }}>
         <div className="card-image">
           <figure className="image">
             <img src={img} alt="Placeholder image" />
@@ -47,5 +47,4 @@ const StyledItemBox = styled.div`
   margin: 3rem 1rem;
   width: calc(25% - 2rem);
   min-width:256px;
-  height: auto;
 `
