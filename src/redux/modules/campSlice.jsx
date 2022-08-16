@@ -43,19 +43,16 @@ export const __deleteCamp = createAsyncThunk("deleteCamp", async (payload, thunk
 }
 );
 
-export const __updateCamp = createAsyncThunk("updateTodos",async (payload, thunkAPI) => {
-    try {
-      await axios.patch(`http://localhost:3001/camps/${payload.id}`,payload);
-      // console.log(payload)
-      // console.log(data)
-      return thunkAPI.fulfillWithValue(payload);
-    } catch (error) {
-      // console.log(payload)
-      return thunkAPI.rejectWithValue(error);
-    }
+export const __updateCamp = createAsyncThunk("updateTodos", async (payload, thunkAPI) => {
+  try {
+    await axios.patch(`http://localhost:3001/camps/${payload.id}`, payload);
+    return thunkAPI.fulfillWithValue(payload);
+  } catch (error) {
+    // console.log(payload)
+    return thunkAPI.rejectWithValue(error);
   }
+}
 );
-
 
 
 const campSlice = createSlice({
@@ -105,27 +102,24 @@ const campSlice = createSlice({
 
     // updateCamp
     [__updateCamp.pending]: (state) => {
-      state.isLoading = true; 
+      state.isLoading = true;
     },
 
     [__updateCamp.fulfilled]: (state, action) => {
-      state.isLoading = false; 
-      console.log(action)
-      console.log(state.camps)
-      // state.todos = action.payload.updatetxt
-      // state.todos = action.payload
-      // const target = state.camps.findIndex(
-      //   (camp) => camp.id === action.payload.id);
-      
-      //   state.camps.splice(target, 1, action.payload);
-      state.camps.map((camp)=>
-      camp.id === action.payload.id ? {...camp , title: action.payload.title , location: action.payload.location , review: action.payload.review} : camp
-      )
+      state.isLoading = false;
+      console.log('action', action)
+      console.log('action.payload', action.payload)
+      state.camps = state.camps.map((camp) => {
+        if (camp.id === action.payload.id) {
+          camp = action.payload;
+        }
+        return camp;
+      })
 
     },
     [__updateCamp.rejected]: (state, action) => {
-      state.isLoading = false; 
-      state.error = action.payload; 
+      state.isLoading = false;
+      state.error = action.payload;
     },
 
 

@@ -1,18 +1,11 @@
 {
   "camps": [
     {
-      "title": "2",
-      "location": "서울",
-      "review": "2",
+      "title": "31231",
+      "location": "경기도",
+      "review": "123123",
       "imageURL": {},
       "id": 1
-    },
-    {
-      "title": "2",
-      "location": "강원도",
-      "review": "2",
-      "imageURL": {},
-      "id": 3
     }
   ]
 }
