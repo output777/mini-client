@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { FaMapMarkerAlt } from 'react-icons/fa'
 import Button from "../elements/Button"
 import { useDispatch } from "react-redux"
-import { __deleteCamps, __getCamps } from "../redux/modules/campSlice"
+import { __deleteCamp, __getCamps } from "../redux/modules/campSlice"
 import { useNavigate, useParams } from "react-router-dom"
 
 
@@ -15,7 +15,7 @@ const Detailcontent = ({ camps }) => {
 
 
     const onClickDeleteCampHandler = () => {
-        dispatch(__deleteCamps(id));
+        dispatch(__deleteCamp(id));
         navigate('/')
     }
 

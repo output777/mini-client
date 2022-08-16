@@ -7,55 +7,77 @@ import Input from '../elements/Input';
 import { BsImages } from 'react-icons/bs'
 
 import { useDispatch } from 'react-redux/es/exports';
-import { __addCamps } from '../redux/modules/campSlice';
+import { __addCamp } from '../redux/modules/campSlice';
 import { useNavigate } from 'react-router-dom';
 
 const Form = ({ onClickModalHandler }) => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
   const [isDisabled, setIsDisabled] = useState(true)
-  const [camp, setCamp] = useState({
-    title: '',
-    img: '',
-    location: '',
-    review: ''
-  })
+  const [imgFile, setImgFile] = useState(null);
+  const [imgUrl, setImgUrl] = useState('');
+  const [title, setTitle] = useState('');
+  const [location, setLocation] = useState('');
+  const [review, setReview] = useState('');
 
-  const changehandler = (e) => {
-    const { value, name } = e.target;
-    setCamp({
-      ...camp,
-      [name]: value
-    });
+
+  const onChagneTitleHandler = (e) => {
+    const { value } = e.target;
+    setTitle(value)
+  }
+
+  const onChangeImgHandler = (e) => {
+    const { files } = e.target;
+    if (files[0]) {
+      const formdata = new FormData();
+      formdata.append('imageURL', files[0]);
+
+      for (var value of formdata.values()) {
+        setImgFile(value)
+      }
+
+      setImgUrl(files[0].name)
+    }
+  }
+
+  const onChangeLocationHandler = (e) => {
+    const { value } = e.target;
+    setLocation(value)
+  }
+
+  const onChangeReviewHandler = (e) => {
+    const { value } = e.target;
+    setReview(value)
   }
 
   const onImageUploadCancleHandler = () => {
-    setCamp({
-      title: '',
-      img: '',
-      location: '',
-      review: ''
-    });
+    setImgUrl('')
   }
 
   const onClickAddCampHandler = () => {
-    dispatch(__addCamps(camp));
+    const newCamp = {
+      title: title,
+      location: location,
+      review: review,
+      imageURL: imgFile,
+    }
+    dispatch(__addCamp(newCamp));
     onClickModalHandler();
   };
 
 
   useEffect(() => {
-    if (camp.title === ''
-      || camp.img === ''
-      || camp.location === ''
-      || camp.location === '캠핑 지역을 골라주세요'
-      || camp.review === ''
+    if (title === ''
+      || imgUrl === ''
+      || location === ''
+      || location === '캠핑 지역을 골라주세요'
+      || review === ''
     ) {
       return setIsDisabled(true)
     } else {
       return setIsDisabled(false)
     }
-  }, [camp])
+  }, [title, imgUrl, location, review])
 
 
   return (
@@ -63,18 +85,15 @@ const Form = ({ onClickModalHandler }) => {
       <div className="field py-4 px-6">
         <label className="label is-size-5">제목</label>
         <div className="control">
-
-          <Input className="input" name='title' type="text" placeholder="나만의 캠핑장을 알려주세요" changehandler={(e) => changehandler(e)} />
-
+          <Input className="input" name='title' type="text" placeholder="나만의 캠핑장을 알려주세요" changehandler={(e) => onChagneTitleHandler(e)} />
         </div>
       </div>
 
-
       <div className="field py-4 px-6">
         <label className="label is-size-5">이미지</label>
-        {camp.img === ''
+        {imgUrl === ''
           ? <label htmlFor="ex_file" className='is-size-6 p-2' style={{ width: '100%', cursor: 'pointer', display: 'block' }}><BsImages /> 클릭하세요</label>
-          : <div>이미지 파일: {camp.img} <Button onClickHandler={onImageUploadCancleHandler}>취소</Button></div>}
+          : <div>이미지 파일: {imgUrl} <Button onClickHandler={onImageUploadCancleHandler}>취소</Button></div>}
         <div className="control">
           <Input
             id="ex_file"
@@ -83,7 +102,7 @@ const Form = ({ onClickModalHandler }) => {
             type="file"
             accept="image/jpg, image/png, image/jpeg"
             placeholder="이미지를 넣으려면 클릭하세요"
-            changehandler={(e) => changehandler(e)}
+            changehandler={(e) => onChangeImgHandler(e)}
           />
         </div>
       </div>
@@ -93,8 +112,7 @@ const Form = ({ onClickModalHandler }) => {
         <div className="control">
           <div className="select">
 
-            <select name="location" onChange={(e) => changehandler(e)}>
-
+            <select name="location" onChange={(e) => onChangeLocationHandler(e)}>
               <option>캠핑 지역을 골라주세요</option>
               <option>서울</option>
               <option>경기도</option>
@@ -112,7 +130,7 @@ const Form = ({ onClickModalHandler }) => {
         <label className="label is-size-5">나만의 캠프 리뷰 메시지</label>
         <div className="control">
 
-          <textarea className="textarea" name="review" placeholder="메시지를 입력해주세요" onChange={(e) => changehandler(e)} ></textarea>
+          <textarea className="textarea" name="review" placeholder="메시지를 입력해주세요" onChange={(e) => onChangeReviewHandler(e)} ></textarea>
 
         </div>
       </div>

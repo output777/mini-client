@@ -1,29 +1,42 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Input from "../elements/Input"
 import styled from "styled-components"
 import BackgroundBG from '../assets/imgs/Camp.jpg'
 import Button from "../elements/Button"
 import axios from "axios"
+import { useNavigate } from "react-router-dom"
 
 const Logincontent = (() => {
+    let navigate = useNavigate();
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
 
+    // 로그인버튼 활성화
+    const [loginBtn, setLoginBtn] = useState(true);
 
 
     const onLoginHandler = async () => {
         const login = {
-            username: id,
+            nickname: id,
             password: password,
         }
         try {
-            const data = await axios.post('http://13.125.104.11:8080/api/member/login', login)
-            console.log(data);
-
+            await axios.post('http://13.125.227.32/api/member/login', login)
+                .then((res) => {
+                    console.log(res);
+                })
         } catch (error) {
             console.log(error)
         }
     }
+
+    useEffect(() => {
+        if (id === '' || password === '') {
+            setLoginBtn(true);
+        } else {
+            setLoginBtn(false)
+        }
+    }, [id, password])
 
     return (
         <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -36,8 +49,8 @@ const Logincontent = (() => {
                 <Input className="input" type="email" placeholder="ID" value={id} changehandler={(e) => setId(e.target.value)} />
                 <Input className="input" type="password" placeholder="Password" value={password} changehandler={(e) => setPassword(e.target.value)} />
                 <ButtonBox>
-                    <Button onClickHandler={onLoginHandler}>로그인</Button>
-                    <Button>회원가입</Button>
+                    <Button onClickHandler={onLoginHandler} isDisabled={loginBtn}>로그인</Button>
+                    <Button onClickHandler={() => { navigate('/register') }}>회원가입</Button>
                 </ButtonBox>
             </RegisterBox>
         </div>

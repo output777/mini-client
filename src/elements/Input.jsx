@@ -15,7 +15,6 @@ const Input = (({ id, name, className, type, placeholder, accept, value, changeh
                 width={width}
                 value={value}
                 onChange={changehandler}
-                value={value}
             />
             <ConfirmP>{text}</ConfirmP>
         </div>
@@ -40,8 +39,8 @@ const FormInput = styled.input`
     padding : ${(props) => props.padding};
 `
 const ConfirmP = styled.p`
-    color : black;
-    font-size: 12px;
+    color : #2C3333;
+    font-size: 0.7rem;
     margin : 10px 0;
 
 `

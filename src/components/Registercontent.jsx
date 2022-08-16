@@ -2,24 +2,80 @@ import Input from "../elements/Input"
 import styled from "styled-components"
 import BackgroundBG from '../assets/imgs/Camp.jpg'
 import Button from "../elements/Button"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import axios from "axios"
+import { useNavigate } from "react-router-dom"
 
 const Registercontent = () => {
-    const [id, setId] = useState('');
+    let navigate = useNavigate();
     const [idReg, setIdReg] = useState(false);
+
+    // 아이디, 비밀번호 확인
+    const [id, setId] = useState('');
     const [password, setPassword] = useState('');
     const [passwordConfirm, setPasswordCheck] = useState('');
+
+    // 오류메시지 상태 저장
+    const [idMessage, setIdMessage] = useState('');
+    const [passwordMessage, setPasswordMessage] = useState('');
+    const [passwordConfirmMessage, setPasswordConfirmMessage] = useState('');
+
+    // 중복버튼 활성화, 회원가입버튼 활성화
+    const [idOverlap, setIdOverlap] = useState(false);
+    const [registerBtn, setRegisterBtn] = useState(true);
+
+    // 유효성 검사
+    const [isId, setIsId] = useState(false);
+    const [isPassword, setIsPassword] = useState(false);
+    const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
+
+    // id, password 정규식
+    const idRegEx = /^[a-zA-Z0-9]{6,13}$/g;
+    const passwordRegEx = /^[a-zA-Z0-9]{4,15}$/;
 
 
     const onChangeIdHandler = (e) => {
         const { value } = e.target;
-        setId(value);
-        let regExp = /^[a-z]+[a-z0-9]{5,19}$/g;
-        setIdReg(regExp.test(id));
 
+        if (!idRegEx.test(value)) {
+            setIdMessage('숫자, 영문자 조합 6 ~ 12자리를 입력해주세요');
+            setIsId(false);
+            setIdOverlap(true)
+        } else {
+            setIdMessage('올바른 이름 형식입니다.');
+            setIsId(true);
+            setIdOverlap(false);
+        }
+        setId(value);
     }
+
+
+    const onChangePasswordHandler = (e) => {
+        const { value } = e.target;
+
+        if (!passwordRegEx.test(value)) {
+            setPasswordMessage('숫자, 영문자 조합 4~15자리를 입력해주세요');
+            setIsPassword(false);
+        } else {
+            setPasswordMessage('올바른 비밀번호 형식입니다.');
+            setIsPassword(true);
+        }
+        setPassword(value);
+    }
+
+    const onChangePasswordConfirm = (e) => {
+        const { value } = e.target;
+        if (password === value) {
+            setPasswordConfirmMessage('비밀번호가 일치합니다');
+            setIsPasswordConfirm(true);
+        } else {
+            setPasswordConfirmMessage('비밀번호가 일치하지 않습니다')
+            setIsPasswordConfirm(false);
+        }
+        setPasswordCheck(value);
+    }
+
 
     const onRegisterHandler = async () => {
         const newRegister = {
@@ -37,6 +93,14 @@ const Registercontent = () => {
         }
     }
 
+    useEffect(() => {
+        if (isId && isPassword && isPasswordConfirm) {
+            setRegisterBtn(false);
+        } else {
+            setRegisterBtn(true);
+        }
+    }, [isId, isPassword, isPasswordConfirm])
+
     return (
         <div style={{ display: 'flex', alignItems: 'center' }}>
             <RegisterBG>
@@ -51,42 +115,37 @@ const Registercontent = () => {
                             name="nickname"
                             className="input"
                             type="email"
+                            text={idMessage}
                             placeholder="ID"
                             width='200px'
                             value={id}
                             changehandler={(e) => onChangeIdHandler(e)}
                         />
-                        <Button>중복확인</Button>
+                        <Button isDisabled={idOverlap}>중복확인</Button>
                     </IDbox>
-                    <p>{!idReg
-                        ? '영문자로 시작하는 영문자 또는 숫자 6~20자를 입력해주세요'
-                        : '올바른 아이디 입니다.'
-                    }</p>
                     <Input
                         name="password"
                         className="input"
                         type="password"
                         placeholder="Password"
-                        text={password.length === 0 ? '비밀번호를 입력해주세요' : '비밀번호를 입력하고 있습니다'}
                         width='200px'
+                        text={passwordMessage}
                         value={password}
-                        changehandler={(e) => setPassword(e.target.value)}
+                        changehandler={(e) => onChangePasswordHandler(e)}
                     />
                     <Input
                         name="passwordCheck"
                         className="input"
                         type="password"
                         placeholder="Confirm Password"
-                        text={
-                            passwordConfirm.length === 0 ? '비밀번호 확인을 입력해주세요' : password !== passwordConfirm ?
-                                '비밀번호가 일치하지 않습니다' : '비밀번호가 일치합니다'
-                        }
                         width='200px'
+                        text={passwordConfirmMessage}
                         value={passwordConfirm}
-                        changehandler={(e) => setPasswordCheck(e.target.value)}
+                        changehandler={(e) => onChangePasswordConfirm(e)}
                     />
                     <ButtonBox>
-                        <Button onClickHandler={onRegisterHandler}>회원가입</Button>
+                        <Button onClickHandler={onRegisterHandler} isDisabled={registerBtn} >회원가입</Button>
+                        <Button onClickHandler={() => navigate('/login')}>로그인</Button>
                     </ButtonBox>
                 </div>
             </RegisterBox>
@@ -138,4 +197,8 @@ const IDbox = styled.div`
     display: flex;
     align-items: flex-start;
     margin-bottom:-10px;
+`
+
+const StyledValidationText = styled.p`
+    font-size: 0.5rem;
 `
