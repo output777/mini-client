@@ -11,10 +11,11 @@ import { __getCamps } from "../redux/modules/campSlice"
 const Detailcontainer = () => {
     const dispatch = useDispatch()
     const { camps } = useSelector((state) => state.camps)
+    console.log('camps', camps)
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(__getCamps())
-    },[dispatch])
+    }, [dispatch])
 
     return (
         <div>

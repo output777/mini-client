@@ -11,6 +11,9 @@ const Logincontent = (() => {
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
 
+    // 로그인 메시지
+    const [failLogin, setFailLogin] = useState('')
+
     // 로그인버튼 활성화
     const [loginBtn, setLoginBtn] = useState(true);
 
@@ -23,10 +26,14 @@ const Logincontent = (() => {
         try {
             await axios.post('http://13.125.227.32/api/member/login', login)
                 .then((res) => {
+                    console.log(res.data);
                     console.log(res);
+                    setFailLogin('');
                 })
         } catch (error) {
             console.log(error)
+            console.log(error.message)
+            setFailLogin(`로그인에 실패했습니다. 아이디와 비밀번호를 확인해주세요`)
         }
     }
 
@@ -48,6 +55,7 @@ const Logincontent = (() => {
                 <Registertitle>Login</Registertitle>
                 <Input className="input" type="text" placeholder="ID" value={id} changehandler={(e) => setId(e.target.value)} />
                 <Input className="input" type="password" placeholder="Password" value={password} changehandler={(e) => setPassword(e.target.value)} />
+                <StyledLoginFailMessage>{failLogin}</StyledLoginFailMessage>
                 <ButtonBox>
                     <Button onClickHandler={onLoginHandler} isDisabled={loginBtn}>로그인</Button>
                     <Button onClickHandler={() => { navigate('/register') }}>회원가입</Button>
@@ -100,5 +108,9 @@ const ButtonBox = styled.div`
     flex-direction: row;
     margin-top : 20px;
 `
-
+const StyledLoginFailMessage = styled.p`
+    height: 1rem;
+    font-size: 0.7rem;
+    color:#2C3333;
+`
 

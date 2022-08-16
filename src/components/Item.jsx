@@ -9,7 +9,7 @@ const Item = ({ id, img, location, title, review }) => {
 
   const onClickItemHandler = () => {
     // e.preventdefault();
-    navigate(`./detail/${id}`)
+    navigate(`/detail/${id}`)
   }
 
 

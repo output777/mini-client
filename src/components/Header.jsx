@@ -12,8 +12,8 @@ const Header = () => {
           CAMP
         </p>
         <div className="subtitle is-flex is-justify-content-space-between is-align-items-center" >
-          <Button btnBg='no' onClickHandler={() => navigate('./login')}>로그인</Button >
-          <Button onClickHandler={() => navigate('./register')}> 회원가입</Button>
+          <Button btnBg='no' onClickHandler={() => navigate('/login')}>로그인</Button >
+          <Button onClickHandler={() => navigate('/register')}> 회원가입</Button>
         </div>
       </div>
     </section >

@@ -13,8 +13,6 @@ const List = () => {
   let navigate = useNavigate();
   const [register, setRegister] = useState(false);
   const { camps } = useSelector((state) => state.camps)
-  // const campsID = camps.map((camp)=>camp.id)
-  // console.log('camps', campsID)
 
   const onClickModalHandler = () => {
     setRegister((prev) => !prev);
@@ -24,7 +22,7 @@ const List = () => {
     dispatch(__getCamps())
   }, [dispatch])
 
-  
+
   return (
     <>
       {register ?

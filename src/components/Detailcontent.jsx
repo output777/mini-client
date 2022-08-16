@@ -17,8 +17,9 @@ const Detailcontent = ({ camps }) => {
     const [EditTitle, setEditTitle] = useState('')
     const [EditLocation, setEditLocation] = useState('')
     const [EditReview, setEditReview] = useState('')
-    const camp = camps.find((camp) => camp.id);
-    console.log(Boolean(camp), camp);
+
+    const camp = camps.find((camp) => camp.id === Number(id));
+
 
     const onChangeTitleHandler = (e) => {
         const { value } = e.target;
