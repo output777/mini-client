@@ -1,25 +1,33 @@
 {
   "camps": [
     {
-      "title": "123",
+      "title": "11234534",
+      "location": "충청도",
+      "review": "2",
+      "imageURL": {},
+      "id": 4
+    },
+    {
+      "title": "ㅁㅇㅈㅇ",
       "location": "서울",
-      "review": "123",
+      "review": "1231",
       "imageURL": {},
       "id": 1
     },
     {
-      "title": "",
-      "location": "",
-      "review": "",
+      "title": "dawd",
+      "location": "충청도",
+      "review": "awdad",
       "imageURL": {},
-      "id": 2
-    },
+      "id": 5
+    }
+  ],
+  "comment": [
     {
-      "title": "saddsad",
-      "location": "강원도",
-      "review": "asdasd",
-      "imageURL": {},
-      "id": 3
+      "nickname": "1234",
+      "comment": "123",
+      "commentID": "4",
+      "id": 1
     }
   ]
 }

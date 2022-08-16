@@ -13,6 +13,7 @@ const List = () => {
   let navigate = useNavigate();
   const [register, setRegister] = useState(false);
   const { camps } = useSelector((state) => state.camps)
+  
 
   const onClickModalHandler = () => {
     setRegister((prev) => !prev);
@@ -43,8 +44,6 @@ const List = () => {
                 review={data.review}
               />
             ))}
-
-
           </StyledItemList>
         </div>
       }

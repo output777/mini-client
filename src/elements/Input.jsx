@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 
 
-const Input = (({ id, name, className, type, placeholder, accept, value, changehandler, text, width }) => {
+const Input = (({ id, name, className, type, placeholder, accept, value, changehandler, text, width , minLength , maxLength}) => {
     return (
         <div className="field">
             <FormInput
@@ -15,6 +15,8 @@ const Input = (({ id, name, className, type, placeholder, accept, value, changeh
                 width={width}
                 value={value}
                 onChange={changehandler}
+                minLength = {minLength}
+                maxLength = {maxLength}
             />
             <ConfirmP>{text}</ConfirmP>
         </div>

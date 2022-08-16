@@ -5,7 +5,7 @@ import Button from "../elements/Button"
 import { useDispatch } from "react-redux"
 import { __deleteCamp, __getCamps, __updateCamp } from "../redux/modules/campSlice"
 import { useNavigate, useParams } from "react-router-dom"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Input from "../elements/Input"
 
 
@@ -17,15 +17,14 @@ const Detailcontent = ({ camps }) => {
     const [EditTitle, setEditTitle] = useState('')
     const [EditLocation, setEditLocation] = useState('')
     const [EditReview, setEditReview] = useState('')
-
     const camp = camps.find((camp) => camp.id === Number(id));
-
+    const [PatchBtn,setPatchBtn] = useState(true)   
+    // console.log(Boolean(camp), camp);
 
     const onChangeTitleHandler = (e) => {
         const { value } = e.target;
         setEditTitle(value)
     }
-    console.log(EditLocation)
     const onChangeLocationHandler = (e) => {
         const { value } = e.target;
         setEditLocation(value)
@@ -35,7 +34,7 @@ const Detailcontent = ({ camps }) => {
         setEditReview(value)
     }
 
-
+    
 
     const onClickDeleteCampHandler = (e) => {
         if (!isEdit) {
@@ -51,11 +50,15 @@ const Detailcontent = ({ camps }) => {
     }
 
     const onClickUpdateCampHandler = () => {
-        setIsEdit((prev) => !prev)
+        setIsEdit((prev) => !prev);
+        setPatchBtn(true);
+        setEditTitle(camp.title);
+        setEditLocation(camp.location);
+        setEditReview(camp.review)
     }
 
     const onClickUpdateHandler = () => {
-        setIsEdit(false)
+        setIsEdit(!isEdit)
         const editCamp = {
             ...camp,
             title: EditTitle,
@@ -64,6 +67,14 @@ const Detailcontent = ({ camps }) => {
         }
         dispatch(__updateCamp(editCamp));
     }
+
+    useEffect(() => {
+        if (EditTitle.trim() === '' || EditReview.trim() === '' || (EditLocation === '불가' || EditLocation === '')) {
+            setPatchBtn(true);
+        } else {
+            setPatchBtn(false);
+        }
+    }, [EditTitle, EditReview,EditLocation])
 
 
 
@@ -78,14 +89,14 @@ const Detailcontent = ({ camps }) => {
                 {isEdit ? (
                     <>
                         <Buttonbox>
-                            <Button size='sm' onClickHandler={onClickUpdateHandler}>수정완료</Button>
+                            <Button size='sm' onClickHandler={onClickUpdateHandler} isDisabled={PatchBtn}>수정완료</Button>
                             <Button size='sm' onClickHandler={onClickDeleteCampHandler}>수정취소</Button>
                         </Buttonbox>
                         <TilteContent><Input className="input" type='text' placeholder='제목' width='250px' value={EditTitle} changehandler={onChangeTitleHandler}></Input></TilteContent>
                         <PlaceContent>
                             <div className="select">
                                 <select value={EditLocation} onChange={(e) => onChangeLocationHandler(e)} style={{ fontSize: '15px' }}>
-                                    <option>캠핑 지역을 골라주세요</option>
+                                    <option value='불가'>캠핑 지역을 골라주세요</option>
                                     <option>서울</option>
                                     <option>경기도</option>
                                     <option>강원도</option>
@@ -96,7 +107,8 @@ const Detailcontent = ({ camps }) => {
                                 </select>
                             </div>
                         </PlaceContent>
-                        <Input className="input" type='text' placeholder='리뷰' width='800px' value={EditReview} changehandler={onChangeReviewHandler}></Input>
+                        <textarea resize='none'
+                        className="input" type='text' placeholder='리뷰' value={EditReview} onChange={onChangeReviewHandler}></textarea>
                     </>)
                     : (
                         <>
