@@ -108,13 +108,13 @@ const Registercontent = () => {
                 <StyledImg src={BackgroundBG} alt='bg' />
             </RegisterBG>
             <RegisterBox>
-                <div>
+                <form onSubmit={(e) => e.preventDefault()}>
                     <Registertitle>SIGN UP</Registertitle>
                     <IDbox>
                         <Input
                             name="nickname"
                             className="input"
-                            type="email"
+                            type="text"
                             text={idMessage}
                             placeholder="ID"
                             width='200px'
@@ -147,7 +147,7 @@ const Registercontent = () => {
                         <Button onClickHandler={onRegisterHandler} isDisabled={registerBtn} >회원가입</Button>
                         <Button onClickHandler={() => navigate('/login')}>로그인</Button>
                     </ButtonBox>
-                </div>
+                </form>
             </RegisterBox>
         </div >
     )

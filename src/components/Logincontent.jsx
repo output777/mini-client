@@ -39,21 +39,21 @@ const Logincontent = (() => {
     }, [id, password])
 
     return (
-        <div style={{ display: 'flex', alignItems: 'center' }}>
+        <form onSubmit={(e) => e.preventDefault()} style={{ display: 'flex', alignItems: 'center' }}>
             <RegisterBG>
                 <StyledImg src={BackgroundBG} alt='bg' />
                 <BGh1>Camping</BGh1>
             </RegisterBG>
             <RegisterBox>
                 <Registertitle>Login</Registertitle>
-                <Input className="input" type="email" placeholder="ID" value={id} changehandler={(e) => setId(e.target.value)} />
+                <Input className="input" type="text" placeholder="ID" value={id} changehandler={(e) => setId(e.target.value)} />
                 <Input className="input" type="password" placeholder="Password" value={password} changehandler={(e) => setPassword(e.target.value)} />
                 <ButtonBox>
                     <Button onClickHandler={onLoginHandler} isDisabled={loginBtn}>로그인</Button>
                     <Button onClickHandler={() => { navigate('/register') }}>회원가입</Button>
                 </ButtonBox>
             </RegisterBox>
-        </div>
+        </form>
     )
 })
 
