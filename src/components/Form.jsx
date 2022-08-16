@@ -5,20 +5,31 @@ import styled from 'styled-components';
 import Button from '../elements/Button';
 import Input from '../elements/Input';
 import { BsImages } from 'react-icons/bs'
-
 import { useDispatch } from 'react-redux/es/exports';
 import { __addCamp } from '../redux/modules/campSlice';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 
 const Form = ({ onClickModalHandler }) => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
   const [isDisabled, setIsDisabled] = useState(true)
+
   const [imgFile, setImgFile] = useState(null);
   const [imgUrl, setImgUrl] = useState('');
   const [title, setTitle] = useState('');
   const [location, setLocation] = useState('');
   const [review, setReview] = useState('');
+
+  const [camp, setCamp] = useState({
+    title: '',
+    img: '',
+    location: '',
+    review: ''
+  })
+  
+
 
 
   const onChagneTitleHandler = (e) => {
