@@ -9,6 +9,7 @@ import { useEffect, useState } from "react"
 
 const Detailcommentadd = ({ camps, id }) => {
     const dispatch = useDispatch()
+    const regex = /^[0-9]+$/;
     const camp = camps.find((camp) => camp.id === Number(id));
     // console.log('camp', camp)
 
@@ -21,14 +22,21 @@ const Detailcommentadd = ({ camps, id }) => {
     }
     const onChangecomment = (e) => {
         const { value } = e.target;
-        setComment(value)
+        setComment(value.toString())
     }
 
 
     const onClickAddCommentHandler = async () => {
         if (comment.trim() === '') {
             window.alert('내용을 입력해주세요')
-        } else {
+        }
+        else if (regex.test(comment) === true) {
+            comment.toString()
+            // window.alert('숫자만 입력하시면 안됩니다');
+            // setComment('');
+            await dispatch(__addComment({ nickname: camp.nickname, comment: comment, commentID: Number(id) }))
+        }
+        else {
             await dispatch(__addComment({ nickname: camp.nickname, comment: comment, commentID: Number(id) }))
             await dispatch(__getCamps());
             setNickname('');
