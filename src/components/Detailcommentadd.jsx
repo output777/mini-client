@@ -32,9 +32,8 @@ const Detailcommentadd = ({ camps, id }) => {
         }
         else if (regex.test(comment) === true) {
             comment.toString()
-            // window.alert('숫자만 입력하시면 안됩니다');
-            // setComment('');
-            await dispatch(__addComment({ nickname: camp.nickname, comment: comment, commentID: Number(id) }))
+            window.alert('숫자만 입력하시면 안됩니다');
+            setComment('');
         }
         else {
             await dispatch(__addComment({ nickname: camp.nickname, comment: comment, commentID: Number(id) }))
@@ -51,7 +50,7 @@ const Detailcommentadd = ({ camps, id }) => {
             <Reviewh1>의견쓰기</Reviewh1>
             <Inputbox>
                 {/* <Input className="input" type="text" placeholder="닉네임(2-7자 이내)" width="150px" value={nickname} changehandler={onChangenickname} minLength="2" maxLength="7"/> */}
-                <Input className="input" type="text" placeholder="리뷰(200자 이내)" width="833px" value={comment} changehandler={onChangecomment} maxLength="200" />
+                <Input className="input" type="text" placeholder="리뷰(200자 이내) - 숫자만 입력하면 안됩니다" width="833px" value={comment} changehandler={onChangecomment} maxLength="200" />
                 <Button size='sm' onClickHandler={onClickAddCommentHandler}>Submit</Button>
             </Inputbox>
         </Reviewbox>

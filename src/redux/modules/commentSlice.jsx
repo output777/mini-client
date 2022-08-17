@@ -39,8 +39,8 @@ export const __addComment = createAsyncThunk('addComment', async (payload, thunk
     console.log('data', data);
     return thunkAPI.fulfillWithValue(data.data);
   } catch (error) {
-    console.log('error', error);
-    return thunkAPI.rejectWithValue(error)
+    console.log('error', error.message);
+    return thunkAPI.rejectWithValue(error.message)
   }
 })
 

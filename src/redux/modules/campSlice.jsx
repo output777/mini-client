@@ -34,8 +34,8 @@ export const __getCamps = createAsyncThunk('getCamps', async (_, thunkAPI) => {
     console.log('data', data);
     return thunkAPI.fulfillWithValue({ headers: data.headers, data: data.data });
   } catch (error) {
-    console.log('error', error)
-    return thunkAPI.rejectWithValue(error)
+    console.log('error', error.message)
+    return thunkAPI.rejectWithValue(error.message)
   }
 })
 
