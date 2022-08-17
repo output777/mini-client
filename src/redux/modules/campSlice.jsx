@@ -25,12 +25,12 @@ export const __loginCamp = createAsyncThunk('loginCamp', async (payload, thunkAP
 
 export const __getCamps = createAsyncThunk('getCamps', async (_, thunkAPI) => {
   try {
-    // const config = {
-    //   headers: {
-    //     Authorization: localStorage.getItem('token')
-    //   }
-    // }
-    const data = await axios.get('api/camp')
+    const config = {
+      headers: {
+        Authorization: localStorage.getItem('token')
+      }
+    }
+    const data = await axios.get('api/camp', config)
     console.log('data', data);
     return thunkAPI.fulfillWithValue({ headers: data.headers, data: data.data });
   } catch (error) {
@@ -40,12 +40,22 @@ export const __getCamps = createAsyncThunk('getCamps', async (_, thunkAPI) => {
 })
 
 export const __addCamp = createAsyncThunk('addCamp', async (payload, thunkAPI) => {
+  console.log('payload', payload)
+
+
   try {
-    console.log(payload)
-    const data = await axios.post('api/auth/camp', payload);
+    // "content-type": "multipart/form-data",
+    const config = {
+      headers: {
+        Authorization: localStorage.getItem('token')
+      }
+    }
+
+    const data = await axios.post('api/auth/camp', payload, config);
     console.log('data', data);
     return thunkAPI.fulfillWithValue(data.data);
   } catch (error) {
+    console.log('error', error)
     return thunkAPI.rejectWithValue(error)
   }
 })
@@ -53,7 +63,12 @@ export const __addCamp = createAsyncThunk('addCamp', async (payload, thunkAPI) =
 
 export const __deleteCamp = createAsyncThunk("deleteCamp", async (payload, thunkAPI) => {
   try {
-    const data = await axios.delete(`http://localhost:3001/camps/${payload}`);
+    const config = {
+      headers: {
+        Authorization: localStorage.getItem('token')
+      }
+    }
+    const data = await axios.delete(`http://localhost:3001/camps/${payload}`, config);
     console.log(payload)
     return thunkAPI.fulfillWithValue(payload);
   } catch (error) {
@@ -64,7 +79,12 @@ export const __deleteCamp = createAsyncThunk("deleteCamp", async (payload, thunk
 
 export const __updateCamp = createAsyncThunk("updateTodos", async (payload, thunkAPI) => {
   try {
-    await axios.patch(`http://localhost:3001/camps/${payload.id}`, payload);
+    const config = {
+      headers: {
+        Authorization: localStorage.getItem('token')
+      }
+    }
+    await axios.patch(`http://localhost:3001/camps/${payload.id}`, payload, config);
     return thunkAPI.fulfillWithValue(payload);
   } catch (error) {
     // console.log(payload)

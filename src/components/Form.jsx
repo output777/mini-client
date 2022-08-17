@@ -38,12 +38,14 @@ const Form = ({ onClickModalHandler }) => {
   }
 
   const onChangeImgHandler = (e) => {
+    const formdata = new FormData();
     const { files } = e.target;
+    console.log('files', files)
     if (files[0]) {
-      const formdata = new FormData();
       formdata.append('imageURL', files[0]);
 
       for (var value of formdata.values()) {
+        console.log(value);
         setImgFile(value)
       }
 
@@ -70,7 +72,7 @@ const Form = ({ onClickModalHandler }) => {
       title: title,
       location: location,
       review: review,
-      imageURL: imgFile,
+      // imageURL: imgFile,
     }
     dispatch(__addCamp(newCamp));
     onClickModalHandler();
@@ -84,7 +86,7 @@ const Form = ({ onClickModalHandler }) => {
       || location === '캠핑 지역을 골라주세요'
       || review === ''
     ) {
-      return setIsDisabled(true)
+      return setIsDisabled(false)
     } else {
       return setIsDisabled(false)
     }
