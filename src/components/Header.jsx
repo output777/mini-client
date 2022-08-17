@@ -6,6 +6,11 @@ import styled from 'styled-components';
 const Header = ({ user }) => {
   let navigate = useNavigate();
 
+  const onClickLogoutHandler = () => {
+    localStorage.removeItem('token');
+    navigate('/');
+  }
+
   return (
     <section className="hero mt-0">
       <div className="hero-body is-flex is-justify-content-space-between is-align-items-center" >
@@ -14,7 +19,11 @@ const Header = ({ user }) => {
         </p>
         <div className="subtitle is-flex is-justify-content-space-between is-align-items-center" >
           {user
-            ? <StyledIdText>{user}님 환영합니다</StyledIdText>
+            ?
+            <>
+              <StyledIdText>{user}님 환영합니다</StyledIdText>
+              <Button onClickHandler={onClickLogoutHandler}>로그아웃</Button >
+            </>
             :
             <>
               <Button btnBg='no' onClickHandler={() => navigate('/login')}>로그인</Button >

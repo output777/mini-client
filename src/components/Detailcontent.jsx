@@ -18,8 +18,8 @@ const Detailcontent = ({ camps }) => {
     const [EditLocation, setEditLocation] = useState('')
     const [EditReview, setEditReview] = useState('')
     const camp = camps.find((camp) => camp.id === Number(id));
-    const [PatchBtn,setPatchBtn] = useState(true)   
-    // console.log(Boolean(camp), camp);
+    const [PatchBtn, setPatchBtn] = useState(true)
+    // console.log('camp', camp);
 
     const onChangeTitleHandler = (e) => {
         const { value } = e.target;
@@ -34,7 +34,7 @@ const Detailcontent = ({ camps }) => {
         setEditReview(value)
     }
 
-    
+
 
     const onClickDeleteCampHandler = (e) => {
         if (!isEdit) {
@@ -60,7 +60,7 @@ const Detailcontent = ({ camps }) => {
     const onClickUpdateHandler = () => {
         setIsEdit(!isEdit)
         const editCamp = {
-            ...camp,
+            id: Number(id),
             title: EditTitle,
             location: EditLocation,
             review: EditReview
@@ -74,7 +74,7 @@ const Detailcontent = ({ camps }) => {
         } else {
             setPatchBtn(false);
         }
-    }, [EditTitle, EditReview,EditLocation])
+    }, [EditTitle, EditReview, EditLocation])
 
 
 
@@ -108,7 +108,7 @@ const Detailcontent = ({ camps }) => {
                             </div>
                         </PlaceContent>
                         <textarea resize='none'
-                        className="input" type='text' placeholder='리뷰' value={EditReview} onChange={onChangeReviewHandler}></textarea>
+                            className="input" type='text' placeholder='리뷰' value={EditReview} onChange={onChangeReviewHandler}></textarea>
                     </>)
                     : (
                         <>

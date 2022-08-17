@@ -2,10 +2,12 @@ import Detailcontainer from "../components/Detailcontainer";
 
 
 const DetailPage = () => {
+
+
     return (
-       <div>
-        <Detailcontainer></Detailcontainer>
-       </div> 
+        <div>
+            <Detailcontainer></Detailcontainer>
+        </div>
     )
 }
 

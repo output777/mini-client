@@ -62,32 +62,36 @@ export const __addCamp = createAsyncThunk('addCamp', async (payload, thunkAPI) =
 
 
 export const __deleteCamp = createAsyncThunk("deleteCamp", async (payload, thunkAPI) => {
+  console.log('payload', payload)
   try {
     const config = {
       headers: {
         Authorization: localStorage.getItem('token')
       }
     }
-    const data = await axios.delete(`http://localhost:3001/camps/${payload}`, config);
+    const data = await axios.delete(`api/auth/camp/${payload}`, config);
+    console.log('data', data)
     console.log(payload)
     return thunkAPI.fulfillWithValue(payload);
   } catch (error) {
+    console.log('error', error)
     return thunkAPI.rejectWithValue(error);
   }
 }
 );
 
 export const __updateCamp = createAsyncThunk("updateTodos", async (payload, thunkAPI) => {
+  console.log('payload', payload)
   try {
     const config = {
       headers: {
         Authorization: localStorage.getItem('token')
       }
     }
-    await axios.patch(`http://localhost:3001/camps/${payload.id}`, payload, config);
+    await axios.put(`api/auth/camp/${payload.id}`, payload, config);
     return thunkAPI.fulfillWithValue(payload);
   } catch (error) {
-    // console.log(payload)
+    console.log('error', error)
     return thunkAPI.rejectWithValue(error);
   }
 }
