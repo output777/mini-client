@@ -7,7 +7,6 @@ import DetailPage from "../components/Detailcontainer";
 
 const Router = () => {
     let token = localStorage.getItem('token');
-    console.log(token);
 
     return (
         <BrowserRouter>

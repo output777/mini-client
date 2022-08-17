@@ -7,16 +7,16 @@ import Header from "./Header"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { __getCamps } from "../redux/modules/campSlice"
-import { __getComments } from "../redux/modules/commentSlice"
+import { __addComment } from "../redux/modules/commentSlice"
 import { useParams } from "react-router-dom"
 
 const Detailcontainer = () => {
     const dispatch = useDispatch()
     const { id } = useParams();
-    const { camps, user } = useSelector((state) => state.camps)
+    const { camps, user } = useSelector((state) => state.camps);
 
     useEffect(() => {
-        dispatch(__getCamps())
+        dispatch(__getCamps());
     }, [dispatch])
 
     return (
@@ -25,9 +25,9 @@ const Detailcontainer = () => {
                 <Layout>
                     <Header user={user}></Header>
                     <DetailLayout>
-                        <Detailcontent camps={camps}></Detailcontent>
-                        <Detailcommentadd></Detailcommentadd>
-                        <Detailcomment></Detailcomment>
+                        <Detailcontent camps={camps} id={id}></Detailcontent>
+                        <Detailcommentadd camps={camps} id={id}></Detailcommentadd>
+                        <Detailcomment camps={camps} id={id}></Detailcomment>
                     </DetailLayout>
                 </Layout>
             </StyledLandingPage>

@@ -14,10 +14,10 @@ export const __loginCamp = createAsyncThunk('loginCamp', async (payload, thunkAP
   try {
     const data = await axios.post('api/member/login', payload);
     localStorage.setItem('token', data.headers.authorization);
-    console.log(data)
+    // console.log(data)
     return thunkAPI.fulfillWithValue(data.data);
   } catch (error) {
-    console.log(error.message)
+    // console.log(error.message)
     return thunkAPI.rejectWithValue(error.message)
   }
 })
@@ -52,10 +52,10 @@ export const __addCamp = createAsyncThunk('addCamp', async (payload, thunkAPI) =
     }
 
     const data = await axios.post('api/auth/camp', payload, config);
-    console.log('data', data);
+    // console.log('data', data);
     return thunkAPI.fulfillWithValue(data.data);
   } catch (error) {
-    console.log('error', error)
+    // console.log('error', error)
     return thunkAPI.rejectWithValue(error)
   }
 })
@@ -70,18 +70,18 @@ export const __deleteCamp = createAsyncThunk("deleteCamp", async (payload, thunk
       }
     }
     const data = await axios.delete(`api/auth/camp/${payload}`, config);
-    console.log('data', data)
-    console.log(payload)
+    // console.log('data', data)
+    // console.log(payload)
     return thunkAPI.fulfillWithValue(payload);
   } catch (error) {
-    console.log('error', error)
+    // console.log('error', error)
     return thunkAPI.rejectWithValue(error);
   }
 }
 );
 
 export const __updateCamp = createAsyncThunk("updateTodos", async (payload, thunkAPI) => {
-  console.log('payload', payload)
+  // console.log('payload', payload)
   try {
     const config = {
       headers: {
@@ -91,11 +91,12 @@ export const __updateCamp = createAsyncThunk("updateTodos", async (payload, thun
     await axios.put(`api/auth/camp/${payload.id}`, payload, config);
     return thunkAPI.fulfillWithValue(payload);
   } catch (error) {
-    console.log('error', error)
+    // console.log('error', error)
     return thunkAPI.rejectWithValue(error);
   }
 }
 );
+
 
 
 const campSlice = createSlice({
@@ -169,8 +170,8 @@ const campSlice = createSlice({
 
     [__updateCamp.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log('action', action)
-      console.log('action.payload', action.payload)
+      // console.log('action', action)
+      // console.log('action.payload', action.payload)
       state.camps = state.camps.map((camp) => {
         if (camp.id === action.payload.id) {
           camp = action.payload;

@@ -7,14 +7,15 @@ import { useParams } from "react-router-dom";
 import Input from "../elements/Input";
 
 
-const Comment = ({ commen}) => {
+const Comment = ({ commen }) => {
+    // console.log('commen', commen)
     const dispatch = useDispatch()
-    
+
     const { id } = useParams()
     const [nickname, setNickname] = useState('')
     const [comment, setComment] = useState('')
     const [isEdit, setIsEdit] = useState(false)
-    const [PatchBtn,setPatchBtn] = useState(true)
+    const [PatchBtn, setPatchBtn] = useState(true)
 
     const onChangeNickname = (e) => {
         const { value } = e.target;
@@ -43,29 +44,29 @@ const Comment = ({ commen}) => {
             nickname: nickname,
             comment: comment,
             commentID: id,
-            id : commen.id
+            id: commen.id
         }
         dispatch(__updateComment(commentText))
         setIsEdit(!isEdit)
     }
 
     //수정하기 , 취소하기
-    const onUpdateCommentToggleHandler = () =>{
+    const onUpdateCommentToggleHandler = () => {
         setIsEdit(!isEdit)
         setNickname(commen.nickname)
         setComment(commen.comment)
-        
+
     }
 
     useEffect(() => {
-        if (nickname.trim() === '' || comment.trim() === '' ) {
+        if (nickname.trim() === '' || comment.trim() === '') {
             setPatchBtn(true);
         } else {
             setPatchBtn(false);
         }
-    }, [nickname,comment ])
+    }, [nickname, comment])
 
- 
+
 
     return (
         <div>
@@ -86,9 +87,9 @@ const Comment = ({ commen}) => {
                                 </> :
                                 <>
                                     <Textbox>
-                                        <strong>{commen.nickname}</strong>
+                                        <strong>{commen.memberName}</strong>
                                         <br />
-                                        {commen.comment}
+                                        {commen.content}
                                     </Textbox>
                                     <Buttonbox>
                                         <Button size='sm' onClickHandler={onUpdateCommentToggleHandler}>수정</Button>

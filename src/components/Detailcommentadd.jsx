@@ -2,12 +2,15 @@ import styled from "styled-components"
 import Input from "../elements/Input"
 import Button from '../elements/Button'
 import { useDispatch } from "react-redux"
+import { __getCamps } from "../redux/modules/campSlice"
 import { __addComment, __getComments } from "../redux/modules/commentSlice"
 import { useEffect, useState } from "react"
 
 
-const Detailcommentadd = ({ id }) => {
+const Detailcommentadd = ({ camps, id }) => {
     const dispatch = useDispatch()
+    const camp = camps.find((camp) => camp.id === Number(id));
+    // console.log('camp', camp)
 
     const [nickname, setNickname] = useState('')
     const [comment, setComment] = useState('')
@@ -22,15 +25,18 @@ const Detailcommentadd = ({ id }) => {
     }
 
 
-    const onClickAddCommentHandler = () => {
-        if (nickname.trim() === '' || comment.trim() === '') {
+    const onClickAddCommentHandler = async () => {
+        if (comment.trim() === '') {
             window.alert('내용을 입력해주세요')
         } else {
-            dispatch(__addComment({ nickname: nickname, comment: comment, commentID: id }))
+            await dispatch(__addComment({ nickname: camp.nickname, comment: comment, commentID: Number(id) }))
+            await dispatch(__getCamps());
             setNickname('');
             setComment('');
         }
     }
+
+
 
     return (
         <Reviewbox>

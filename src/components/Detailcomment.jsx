@@ -4,15 +4,16 @@ import styled from "styled-components";
 import { __getComments } from "../redux/modules/commentSlice";
 import Comment from "./Comment";
 
-const Detailcomment = ({ comment, id }) => {
-    // console.log(comment)
+const Detailcomment = ({ camps, id }) => {
+    const camp = camps.find((camp) => camp.id === Number(id));
+    // console.log(camp);
+    // console.log(camp && camp.commentList);
 
     return (
         <Reviewbox>
-            {/* {comment.map((commen) => (
-                commen.commentID === id ?
-                    <Comment key={commen.id} commen={commen} id={id} /> : null
-            ))} */}
+            {camp && camp.commentList.map((comment) => (
+                <Comment key={comment.id} commen={comment} />
+            ))}
         </Reviewbox>
     )
 }

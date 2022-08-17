@@ -9,17 +9,17 @@ import { useEffect, useState } from "react"
 import Input from "../elements/Input"
 
 
-const Detailcontent = ({ camps }) => {
+const Detailcontent = ({ camps, id }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { id } = useParams();
+    // const { id } = useParams();
     const [isEdit, setIsEdit] = useState(false)
     const [EditTitle, setEditTitle] = useState('')
     const [EditLocation, setEditLocation] = useState('')
     const [EditReview, setEditReview] = useState('')
     const camp = camps.find((camp) => camp.id === Number(id));
+    console.log('camp', camp)
     const [PatchBtn, setPatchBtn] = useState(true)
-    // console.log('camp', camp);
 
     const onChangeTitleHandler = (e) => {
         const { value } = e.target;
