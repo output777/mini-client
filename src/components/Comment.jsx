@@ -5,10 +5,11 @@ import { __deleteComment, __updateComment } from "../redux/modules/commentSlice"
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Input from "../elements/Input";
+import { __getCamps } from "../redux/modules/campSlice";
 
 
-const Comment = ({ commen }) => {
-    // console.log('commen', commen)
+const Comment = ({ commen}) => {
+    console.log('commen', commen)
     const dispatch = useDispatch()
 
     const { id } = useParams()
@@ -33,7 +34,9 @@ const Comment = ({ commen }) => {
             const result = window.confirm('정말 삭제하시겠습니까?')
             e.stopPropagation();
             if (result) {
-                dispatch(__deleteComment(commen.id));
+                const deletedata = {commentID : commen.id , campingID : id}
+                dispatch(__deleteComment(deletedata));
+                dispatch(__getCamps());
             }
         }
     }
@@ -65,6 +68,7 @@ const Comment = ({ commen }) => {
             setPatchBtn(false);
         }
     }, [nickname, comment])
+
 
 
 

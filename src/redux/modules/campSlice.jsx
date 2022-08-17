@@ -42,7 +42,7 @@ export const __getCamps = createAsyncThunk('getCamps', async (_, thunkAPI) => {
 export const __addCamp = createAsyncThunk('addCamp', async (payload, thunkAPI) => {
   console.log('payload', payload)
 
-
+  
   try {
     // "content-type": "multipart/form-data",
     const config = {

@@ -9,7 +9,6 @@ import { useEffect, useState } from "react"
 
 const Detailcommentadd = ({ camps, id }) => {
     const dispatch = useDispatch()
-    const regex = /^[0-9]+$/;
     const camp = camps.find((camp) => camp.id === Number(id));
     // console.log('camp', camp)
 
@@ -22,7 +21,7 @@ const Detailcommentadd = ({ camps, id }) => {
     }
     const onChangecomment = (e) => {
         const { value } = e.target;
-        setComment(value.toString())
+        setComment(value)
     }
 
 
@@ -34,16 +33,13 @@ const Detailcommentadd = ({ camps, id }) => {
             comment.toString()
             window.alert('숫자만 입력하시면 안됩니다');
             setComment('');
-        }
-        else {
+        } else {
             await dispatch(__addComment({ nickname: camp.nickname, comment: comment, commentID: Number(id) }))
             await dispatch(__getCamps());
             setNickname('');
             setComment('');
         }
     }
-
-
 
     return (
         <Reviewbox>
@@ -54,7 +50,6 @@ const Detailcommentadd = ({ camps, id }) => {
                 <Button size='sm' onClickHandler={onClickAddCommentHandler}>Submit</Button>
             </Inputbox>
         </Reviewbox>
-
     )
 }
 export default Detailcommentadd
