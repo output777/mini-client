@@ -8,21 +8,15 @@ import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { useDispatch } from 'react-redux/es/hooks/useDispatch';
 import { __getCamps } from '../redux/modules/campSlice';
 
-const List = () => {
+const List = ({ camps, user }) => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
   const [register, setRegister] = useState(false);
-  const { camps } = useSelector((state) => state.camps)
-  
+
 
   const onClickModalHandler = () => {
     setRegister((prev) => !prev);
   }
-
-  useEffect(() => {
-    dispatch(__getCamps())
-  }, [dispatch])
-
 
   return (
     <>

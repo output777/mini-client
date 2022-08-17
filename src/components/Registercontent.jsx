@@ -86,7 +86,7 @@ const Registercontent = () => {
         }
 
         try {
-            const data = await axios.post('http://13.125.227.32/api/member/idCheck', newIdCheck)
+            const data = await axios.post('api/member/idCheck', newIdCheck)
             if (data.data) {
                 setIdMessage('사용할 수 있는 아이디입니다');
                 setIdDbCheck(true)
@@ -109,7 +109,7 @@ const Registercontent = () => {
             passwordConfirm: passwordConfirm,
         }
         try {
-            const data = await axios.post('http://13.125.227.32/api/member/signup', newRegister)
+            const data = await axios.post('member/signup', newRegister)
             console.log(data);
             navigate('/login')
         } catch (error) {

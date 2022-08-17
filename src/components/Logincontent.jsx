@@ -5,11 +5,17 @@ import BackgroundBG from '../assets/imgs/Camp.jpg'
 import Button from "../elements/Button"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
+import { useDispatch } from 'react-redux/es/hooks/useDispatch';
+import { useSelector } from 'react-redux/es/hooks/useSelector';
+import { __loginCamp } from "../redux/modules/campSlice"
 
 const Logincontent = (() => {
     let navigate = useNavigate();
+    const dispatch = useDispatch();
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
+
+    const { error, loginSuccess } = useSelector((state) => state.camps);
 
     // 로그인 메시지
     const [failLogin, setFailLogin] = useState('')
@@ -18,26 +24,14 @@ const Logincontent = (() => {
     const [loginBtn, setLoginBtn] = useState(true);
 
 
-    const onLoginHandler = async () => {
+    const onLoginHandler = () => {
         const login = {
             nickname: id,
             password: password,
         }
-        try {
-            await axios.post('http://13.125.227.32/api/member/login', login)
-                .then((res) => {
-                    // console.log(res.headers.authorization);
-                    // console.log('res', res);
-                    navigate('/')
-                    localStorage.setItem('token', res.headers.authorization);
-                    setFailLogin('');
-                })
-        } catch (error) {
-            console.log(error)
-            console.log(error.message)
-            setFailLogin(`로그인에 실패했습니다. 아이디와 비밀번호를 확인해주세요`)
-        }
+        dispatch(__loginCamp(login));
     }
+
 
     useEffect(() => {
         if (id === '' || password === '') {
@@ -45,7 +39,17 @@ const Logincontent = (() => {
         } else {
             setLoginBtn(false)
         }
-    }, [id, password])
+        console.log('error', error, 'loginSuccess', loginSuccess);
+        if (error === 'Request failed with status code 400' && !loginSuccess) {
+            setFailLogin('로그인에 실패했습니다. 아이디와 비밀번호를 확인해주세요');
+        } else if (error === null && !loginSuccess) {
+            setFailLogin('')
+        }
+        else if (error === null && loginSuccess) {
+            setFailLogin('')
+            navigate('/');
+        }
+    }, [id, password, error, loginSuccess])
 
     return (
         <form onSubmit={(e) => e.preventDefault()} style={{ display: 'flex', alignItems: 'center' }}>

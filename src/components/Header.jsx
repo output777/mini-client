@@ -1,8 +1,9 @@
 import React from 'react'
 import Button from '../elements/Button'
 import { useNavigate } from "react-router-dom";
+import styled from 'styled-components';
 
-const Header = () => {
+const Header = ({ user }) => {
   let navigate = useNavigate();
 
   return (
@@ -12,8 +13,14 @@ const Header = () => {
           CAMP
         </p>
         <div className="subtitle is-flex is-justify-content-space-between is-align-items-center" >
-          <Button btnBg='no' onClickHandler={() => navigate('/login')}>로그인</Button >
-          <Button onClickHandler={() => navigate('/register')}> 회원가입</Button>
+          {user
+            ? <StyledIdText>{user}님 환영합니다</StyledIdText>
+            :
+            <>
+              <Button btnBg='no' onClickHandler={() => navigate('/login')}>로그인</Button >
+              <Button onClickHandler={() => navigate('/register')}> 회원가입</Button>
+            </>
+          }
         </div>
       </div>
     </section >
@@ -21,4 +28,10 @@ const Header = () => {
   )
 }
 
-export default Header
+export default Header;
+
+const StyledIdText = styled.p`
+  color: #fff;
+  font-size:1rem;
+  padding:1rem;
+`

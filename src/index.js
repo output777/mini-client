@@ -5,8 +5,11 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bulma/css/bulma.css';
 import { Provider } from 'react-redux';
-
 import store from './redux/config/configStore'
+import axios from 'axios';
+
+axios.defaults.baseURL ='http://13.125.227.32/';
+axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

@@ -3,13 +3,13 @@ import Background from './Background'
 import Header from './Header'
 import List from './List';
 
-const Main = () => {
+const Main = ({ camps, user }) => {
   return (
     <>
       <Background>
-        <Header />
+        <Header user={user} />
       </Background>
-      <List />
+      <List camps={camps} user={user} />
     </>
   )
 }

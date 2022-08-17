@@ -6,17 +6,31 @@ const initialState = {
   user: '',
   isLoading: false,
   error: null,
+  loginSuccess: false,
 };
+
+
+export const __loginCamp = createAsyncThunk('loginCamp', async (payload, thunkAPI) => {
+  try {
+    const data = await axios.post('api/member/login', payload);
+    localStorage.setItem('token', data.headers.authorization);
+    console.log(data)
+    return thunkAPI.fulfillWithValue(data.data);
+  } catch (error) {
+    console.log(error.message)
+    return thunkAPI.rejectWithValue(error.message)
+  }
+})
 
 
 export const __getCamps = createAsyncThunk('getCamps', async (_, thunkAPI) => {
   try {
-    const config = {
-      headers: {
-        Authorization: localStorage.getItem('token')
-      }
-    }
-    const data = await axios.get('http://13.125.227.32/api/camp', config)
+    // const config = {
+    //   headers: {
+    //     Authorization: localStorage.getItem('token')
+    //   }
+    // }
+    const data = await axios.get('api/camp')
     console.log('data', data);
     return thunkAPI.fulfillWithValue({ headers: data.headers, data: data.data });
   } catch (error) {
@@ -28,14 +42,13 @@ export const __getCamps = createAsyncThunk('getCamps', async (_, thunkAPI) => {
 export const __addCamp = createAsyncThunk('addCamp', async (payload, thunkAPI) => {
   try {
     console.log(payload)
-    const data = await axios.post('http://localhost:3001/camps', payload);
+    const data = await axios.post('api/auth/camp', payload);
     console.log('data', data);
     return thunkAPI.fulfillWithValue(data.data);
   } catch (error) {
     return thunkAPI.rejectWithValue(error)
   }
 })
-
 
 
 export const __deleteCamp = createAsyncThunk("deleteCamp", async (payload, thunkAPI) => {
@@ -46,7 +59,6 @@ export const __deleteCamp = createAsyncThunk("deleteCamp", async (payload, thunk
   } catch (error) {
     return thunkAPI.rejectWithValue(error);
   }
-
 }
 );
 
@@ -68,6 +80,23 @@ const campSlice = createSlice({
   reducers: {},
   extraReducers: {
 
+
+
+    //  loginCamp
+    [__loginCamp.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [__loginCamp.fulfilled]: (state, action) => {
+      state.isLoading = true;
+      state.user = action.payload.nickname;
+      state.error = null;
+      state.loginSuccess = true;
+    },
+    [__loginCamp.rejected]: (state, action) => {
+      state.isLoading = true;
+      state.error = action.payload;
+      state.loginSuccess = false;
+    },
     // getCamps
     [__getCamps.pending]: (state) => {
       state.isLoading = true;
@@ -75,8 +104,6 @@ const campSlice = createSlice({
     [__getCamps.fulfilled]: (state, action) => {
       state.isLoading = true;
       console.log('action.payload', action.payload);
-      // console.log(action.payload.data);
-      // console.log(action.payload.headers.nickname);
       state.camps = action.payload.data;
       state.user = action.payload.headers.nickname;
     },

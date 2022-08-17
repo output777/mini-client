@@ -1,13 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components';
 import Layout from '../components/Layout';
 import Main from '../components/Main';
+import { useSelector } from 'react-redux/es/hooks/useSelector';
+import { useDispatch } from 'react-redux/es/hooks/useDispatch';
+import { __getCamps } from '../redux/modules/campSlice';
 
 const LandingPage = () => {
+  const dispatch = useDispatch();
+  const { camps, user } = useSelector((state) => state.camps)
+
+  useEffect(() => {
+    dispatch(__getCamps())
+  }, [dispatch])
+
+
   return (
     <StyledLandingPage>
       <Layout>
-        <Main />
+        <Main camps={camps} user={user} />
       </Layout>
     </StyledLandingPage>
   )

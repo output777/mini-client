@@ -1,25 +1,53 @@
 {
   "camps": [
     {
-      "title": "11234534",
-      "location": "충청도",
-      "review": "2",
-      "imageURL": {},
-      "id": 4
-    },
-    {
-      "title": "ㅁㅇㅈㅇ",
+      "title": "123",
       "location": "서울",
-      "review": "1231",
+      "review": "123",
       "imageURL": {},
       "id": 1
     },
     {
-      "title": "dawd",
-      "location": "충청도",
-      "review": "awdad",
+      "title": "",
+      "location": "",
+      "review": "",
       "imageURL": {},
-
+      "id": 2
+    },
+    {
+      "title": "saddsad",
+      "location": "강원도",
+      "review": "asdasd",
+      "imageURL": {},
+      "id": 3
+    },
+    {
+      "title": "23",
+      "location": "충청도",
+      "review": "123",
+      "imageURL": {},
+      "id": 4
+    },
+    {
+      "title": "asd",
+      "location": "강원도",
+      "review": "asd",
+      "imageURL": {},
+      "id": 5
+    },
+    {
+      "title": "asd",
+      "location": "경기도",
+      "review": "asdd",
+      "imageURL": {},
+      "id": 6
+    },
+    {
+      "title": "asd",
+      "location": "경기도",
+      "review": "asd",
+      "imageURL": {},
+      "id": 7
     }
   ]
 }
