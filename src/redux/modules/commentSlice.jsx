@@ -35,7 +35,7 @@ export const __addComment = createAsyncThunk('addComment', async (payload, thunk
         "Content-Type": 'application/json', Authorization: localStorage.getItem('token')
       }
     }
-    const data = await axios.post(`api/auth/comment/${payload.commentID}`, (payload.comment).toString(), config);
+    const data = await axios.post(`api/auth/comment/${payload.commentID}`, payload.comment, config);
     console.log('data', data);
     return thunkAPI.fulfillWithValue(data.data);
   } catch (error) {
