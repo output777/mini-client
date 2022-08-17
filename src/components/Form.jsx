@@ -81,7 +81,7 @@ const Form = ({ onClickModalHandler }) => {
 
   useEffect(() => {
     if (title === ''
-      || imgUrl === ''
+    || imgUrl === ''
       || location === ''
       || location === '캠핑 지역을 골라주세요'
       || review === ''
