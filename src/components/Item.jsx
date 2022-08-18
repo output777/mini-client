@@ -17,8 +17,6 @@ const Item = ({ id, img, location, title, review }) => {
   }
 
 
-
-
   return (
     <StyledItemBox onClick={onClickItemHandler}>
       <div className="card" style={{ height: '300px' , cursor:'pointer'}}>
