@@ -10,6 +10,7 @@ const LandingPage = () => {
   const dispatch = useDispatch();
   const { camps, user } = useSelector((state) => state.camps)
 
+
   useEffect(() => {
     dispatch(__getCamps())
   }, [dispatch])

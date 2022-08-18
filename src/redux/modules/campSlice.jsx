@@ -12,6 +12,11 @@ const initialState = {
 
 export const __loginCamp = createAsyncThunk('loginCamp', async (payload, thunkAPI) => {
   try {
+    // const config = {
+    //   headers: {
+    //     Authorization: localStorage.getItem('token')
+    //   }
+    // }
     const data = await axios.post('api/member/login', payload);
     localStorage.setItem('token', data.headers.authorization);
     // console.log(data)
@@ -25,16 +30,22 @@ export const __loginCamp = createAsyncThunk('loginCamp', async (payload, thunkAP
 
 export const __getCamps = createAsyncThunk('getCamps', async (_, thunkAPI) => {
   try {
-    const config = {
-      headers: {
-        Authorization: localStorage.getItem('token')
+    if (localStorage.getItem('token') !== null) {
+      const config = {
+        headers: {
+          Authorization: localStorage.getItem('token')
+        }
       }
+      const data = await axios.get('api/camp', config);
+      // console.log('data', data);
+      return thunkAPI.fulfillWithValue({ headers: data.headers, data: data.data });
+    } else {
+      const data = await axios.get('api/camp');
+      // console.log('data', data);
+      return thunkAPI.fulfillWithValue({ headers: data.headers, data: data.data });
     }
-    const data = await axios.get('api/camp', config)
-    console.log('data', data);
-    return thunkAPI.fulfillWithValue({ headers: data.headers, data: data.data });
   } catch (error) {
-    console.log('error', error.message)
+    // console.log('error', error.message)
     return thunkAPI.rejectWithValue(error.message)
   }
 })
@@ -42,12 +53,16 @@ export const __getCamps = createAsyncThunk('getCamps', async (_, thunkAPI) => {
 export const __addCamp = createAsyncThunk('addCamp', async (payload, thunkAPI) => {
   console.log('payload', payload)
 
-  
+  for (var value of payload.values()) {
+    console.log('formdata value', value);
+  }
+
+
   try {
-    // "content-type": "multipart/form-data",
+    // "content-type": "application/json; multipart/form-data", 
     const config = {
       headers: {
-        Authorization: localStorage.getItem('token')
+        "content-type": false, "process-data": false, Authorization: localStorage.getItem('token')
       }
     }
 
@@ -55,7 +70,8 @@ export const __addCamp = createAsyncThunk('addCamp', async (payload, thunkAPI) =
     // console.log('data', data);
     return thunkAPI.fulfillWithValue(data.data);
   } catch (error) {
-    // console.log('error', error)
+
+    console.log('error', error)
     return thunkAPI.rejectWithValue(error)
   }
 })
@@ -69,7 +85,7 @@ export const __deleteCamp = createAsyncThunk("deleteCamp", async (payload, thunk
         Authorization: localStorage.getItem('token')
       }
     }
-    const data = await axios.delete(`api/auth/camp/${payload}`, config);
+    await axios.delete(`api/auth/camp/${payload}`, config);
     // console.log('data', data)
     // console.log(payload)
     return thunkAPI.fulfillWithValue(payload);
@@ -92,7 +108,7 @@ export const __updateCamp = createAsyncThunk("updateTodos", async (payload, thun
     return thunkAPI.fulfillWithValue(payload);
   } catch (error) {
     // console.log('error', error)
-    return thunkAPI.rejectWithValue(error);
+    return thunkAPI.rejectWithValue(error.message);
   }
 }
 );
@@ -128,7 +144,7 @@ const campSlice = createSlice({
     },
     [__getCamps.fulfilled]: (state, action) => {
       state.isLoading = true;
-      console.log('action.payload', action.payload);
+      // console.log('action.payload', action.payload);
       state.camps = action.payload.data;
       state.user = action.payload.headers.nickname;
     },

@@ -9,6 +9,7 @@ import { useEffect, useState } from "react"
 
 const Detailcommentadd = ({ camps, id }) => {
     const dispatch = useDispatch()
+    const regex = /^[0-9]+$/;
     const camp = camps.find((camp) => camp.id === Number(id));
     // console.log('camp', camp)
 

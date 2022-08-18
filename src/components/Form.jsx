@@ -37,19 +37,15 @@ const Form = ({ onClickModalHandler }) => {
     setTitle(value)
   }
 
+
+  const formdata = new FormData();
   const onChangeImgHandler = (e) => {
-    const formdata = new FormData();
     const { files } = e.target;
     console.log('files', files)
-    if (files[0]) {
-      formdata.append('imageURL', files[0]);
 
-      for (var value of formdata.values()) {
-        console.log(value);
-        setImgFile(value)
-      }
-
-      setImgUrl(files[0].name)
+    for (let i = 0; i < files.length; i++) {
+      setImgFile(files[i])
+      setImgUrl(files[i].name)
     }
   }
 
@@ -68,25 +64,29 @@ const Form = ({ onClickModalHandler }) => {
   }
 
   const onClickAddCampHandler = () => {
+
     const newCamp = {
       title: title,
       location: location,
       review: review,
-      // imageURL: imgFile,
     }
-    dispatch(__addCamp(newCamp));
+    formdata.append("multipartFile", imgFile);
+    formdata.append('dto', new Blob([JSON.stringify(newCamp)], { type: "application/json" }))
+
+
+    dispatch(__addCamp(formdata));
     onClickModalHandler();
   };
 
 
   useEffect(() => {
     if (title === ''
-    || imgUrl === ''
+      || imgUrl === ''
       || location === ''
       || location === '캠핑 지역을 골라주세요'
       || review === ''
     ) {
-      return setIsDisabled(false)
+      return setIsDisabled(true)
     } else {
       return setIsDisabled(false)
     }
@@ -106,7 +106,7 @@ const Form = ({ onClickModalHandler }) => {
         <label className="label is-size-5">이미지</label>
         {imgUrl === ''
           ? <label htmlFor="ex_file" className='is-size-6 p-2' style={{ width: '100%', cursor: 'pointer', display: 'block' }}><BsImages /> 클릭하세요</label>
-          : <div>이미지 파일: {imgUrl} <Button onClickHandler={onImageUploadCancleHandler}>취소</Button></div>}
+          : <div>이미지 파일: {imgUrl} <Button type='button' onClickHandler={onImageUploadCancleHandler}>취소</Button></div>}
         <div className="control">
           <Input
             id="ex_file"
@@ -149,13 +149,17 @@ const Form = ({ onClickModalHandler }) => {
 
 
       <div className="field is-grouped py-4 px-6">
-        <div className="control">
 
-          <Button className="button is-link" isDisabled={isDisabled} onClickHandler={onClickAddCampHandler}>Submit</Button>
+        <form className="control" onSubmit={(e) => {
+          e.preventDefault();
+          onClickAddCampHandler();
+        }}>
 
-        </div>
+          <Button type='submit' className="button is-link" isDisabled={isDisabled}>Submit</Button>
+        </form>
+
         <div className="control">
-          <Button className="button is-link is-light" onClickHandler={onClickModalHandler} >Cancel</Button>
+          <Button type='button' className="button is-link is-light" onClickHandler={onClickModalHandler} >Cancel</Button>
         </div>
       </div>
     </StyledFormBox >

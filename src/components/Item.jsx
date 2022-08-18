@@ -7,6 +7,7 @@ import Camping from '../assets/imgs/Camping.jpg'
 
 const Item = ({ id, img, location, title, review }) => {
   const navigate = useNavigate();
+  // console.log(img);
   const onClickItemHandler = () => {
     // e.preventdefault();
     navigate(`/detail/${id}`)

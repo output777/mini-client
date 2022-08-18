@@ -12,11 +12,13 @@ const List = ({ camps, user }) => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
   const [register, setRegister] = useState(false);
+  // console.log('camps', camps)
 
 
   const onClickModalHandler = () => {
     setRegister((prev) => !prev);
   }
+
 
   return (
     <>
@@ -32,10 +34,11 @@ const List = ({ camps, user }) => {
               <Item
                 key={data.id}
                 id={data.id}
-                img={data.img}
+                img={data.urlPath}
                 location={data.location}
                 title={data.title}
                 review={data.review}
+              // img={data.urlPath}
               />
             ))}
           </StyledItemList>

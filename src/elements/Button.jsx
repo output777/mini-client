@@ -44,7 +44,7 @@ const BTNBG = {
 }
 
 
-const Button = ({ isDisabled, size, variants, btnBg, children, onClickHandler }) => {
+const Button = ({ type, isDisabled, size, variants, btnBg, children, onClickHandler }) => {
   const sizeStyle = SIZES[size]
   const variantStyle = VARIANTS[variants]
   const btnBgdStyle = BTNBG[btnBg]
@@ -52,6 +52,7 @@ const Button = ({ isDisabled, size, variants, btnBg, children, onClickHandler })
 
   return (
     <StyledButton
+      type={type}
       disabled={isDisabled}
       sizeStyle={sizeStyle}
       variantStyle={variantStyle}

@@ -2,12 +2,16 @@ import React from 'react'
 import Button from '../elements/Button'
 import { useNavigate } from "react-router-dom";
 import styled from 'styled-components';
+import { __getCamps } from '../redux/modules/campSlice';
+import { useDispatch } from 'react-redux/es/hooks/useDispatch';
 
 const Header = ({ user }) => {
+  const dispatch = useDispatch();
   let navigate = useNavigate();
 
   const onClickLogoutHandler = () => {
     localStorage.removeItem('token');
+    dispatch(__getCamps())
     navigate('/');
   }
 
