@@ -1,4 +1,3 @@
-import reviewimg from "../assets/imgs/Camping.jpg"
 import styled from "styled-components"
 import { FaMapMarkerAlt } from 'react-icons/fa'
 import Button from "../elements/Button"
