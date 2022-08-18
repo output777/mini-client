@@ -9,7 +9,7 @@ import { __getCamps } from "../redux/modules/campSlice";
 
 
 const Comment = ({ commen}) => {
-    console.log('commen', commen)
+    // console.log('commen', commen)
     const dispatch = useDispatch()
 
     const { id } = useParams()
@@ -29,28 +29,29 @@ const Comment = ({ commen}) => {
 
 
     //삭제하기
-    const onDeleteCommentHandler = (e) => {
+    const onDeleteCommentHandler = async (e) => {
         if (!isEdit) {
             const result = window.confirm('정말 삭제하시겠습니까?')
             e.stopPropagation();
             if (result) {
                 const deletedata = {commentID : commen.id , campingID : id}
-                dispatch(__deleteComment(deletedata));
-                dispatch(__getCamps());
+                await dispatch(__deleteComment(deletedata));
+                await dispatch(__getCamps());
             }
         }
     }
 
     //수정완료
-    const onUpdateCommentHandler = () => {
+    const onUpdateCommentHandler = async () => {
         const commentText = {
-            nickname: nickname,
-            comment: comment,
-            commentID: id,
-            id: commen.id
+            // nickname: nickname,
+            content: comment,
+            campingID : id,
+            commentID : commen.id
         }
-        dispatch(__updateComment(commentText))
-        setIsEdit(!isEdit)
+        await dispatch(__updateComment(commentText));
+        await dispatch(__getCamps());
+        setIsEdit(!isEdit);
     }
 
     //수정하기 , 취소하기
@@ -62,7 +63,7 @@ const Comment = ({ commen}) => {
     }
 
     useEffect(() => {
-        if (nickname.trim() === '' || comment.trim() === '') {
+        if (comment === '') {
             setPatchBtn(true);
         } else {
             setPatchBtn(false);
@@ -81,7 +82,7 @@ const Comment = ({ commen}) => {
                             {isEdit ?
                                 <>
                                     <Textbox>
-                                        <Input className="input" type='text' placeholder='닉네임' width='150px' value={nickname} changehandler={onChangeNickname}></Input>
+                                        {/* <Input className="input" type='text' placeholder='닉네임' width='150px' value={nickname} changehandler={onChangeNickname}></Input> */}
                                         <Input className="input" type='text' placeholder='댓글' width='700px' value={comment} changehandler={onChangeComment}></Input>
                                     </Textbox>
                                     <Buttonbox>

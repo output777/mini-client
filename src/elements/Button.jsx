@@ -44,7 +44,9 @@ const BTNBG = {
 }
 
 
+
 const Button = ({ type, isDisabled, size, variants, btnBg, children, onClickHandler }) => {
+
   const sizeStyle = SIZES[size]
   const variantStyle = VARIANTS[variants]
   const btnBgdStyle = BTNBG[btnBg]
