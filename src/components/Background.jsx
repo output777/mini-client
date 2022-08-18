@@ -28,6 +28,7 @@ const StyledBg = styled.div`
   background-position: 0 center;
   background-repeat: no-repeat; 
   position: relative;
+  font-family: 'Pretendard-Regular';
 `
 
 const StyledTitleBox = styled.div`

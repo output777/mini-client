@@ -53,4 +53,5 @@ const StyledItemBox = styled.div`
   margin: 3rem 1rem;
   width: calc(25% - 2rem);
   min-width:256px;
+  font-family: 'Pretendard-Regular';
 `

@@ -18,7 +18,7 @@ const Header = ({ user }) => {
   return (
     <section className="hero mt-0">
       <div className="hero-body is-flex is-justify-content-space-between is-align-items-center" >
-        <p className="title" style={{ color: '#fff' }}>
+        <p className="title" style={{ color: '#fff', fontFamily: 'Pretendard-Regular' }}>
           CAMP
         </p>
         <div className="subtitle is-flex is-justify-content-space-between is-align-items-center" >
@@ -47,4 +47,5 @@ const StyledIdText = styled.p`
   color: #fff;
   font-size:1rem;
   padding:1rem;
+  font-family: 'Pretendard-Regular';
 `

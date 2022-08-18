@@ -120,8 +120,8 @@ const Detailcontent = ({ camps }) => {
                                 <Button size='sm' onClickHandler={onClickDeleteCampHandler}>삭제하기</Button>
                             </Buttonbox>
                             <TilteContent>{camp && camp.title}</TilteContent>
-                            <PlaceContent><FaMapMarkerAlt color="#EF4C1E" />{camp && camp.location}</PlaceContent>
-                            <p>{camp && camp.review}</p>
+                            <PlaceContent><FaMapMarkerAlt color="#EF4C1E" /><span style={{ paddingLeft: '0.5rem' }}>{camp && camp.location}</span></PlaceContent>
+                            <p style={{ wordBreak: 'break-all' }}>{camp && camp.review}</p>
                         </>)
                 }
             </Maincontent>
@@ -138,32 +138,41 @@ const PrevBtn = styled.h4`
 `
 
 const Mainbox = styled.div`
+    width:940px;
+    height: 627px;
+    border-radius: 20px;
+    padding: 1rem;
 
 `
 const Reviewimg = styled.img`
     background-size: contain;
     background-position: center;
-    width:800px;
-    height: 500px;
+    width: 100%;
+    height: 100%;
     border-radius: 20px;
     
 `
 const Maincontent = styled.div`
     padding : 10px;
     position: relative;
+    font-family: 'Pretendard-Regular';
 
 `
 const TilteContent = styled.h2`
     font-size: 30px;
     font-weight: bold;
     margin: 10px 0;
+    word-break:break-all;
 `
 const PlaceContent = styled.h3`
     margin: 10px 0;
     font-size: 20px;
+    display: flex;
+    align-items: center;
 `
 
 const Buttonbox = styled.div`
     position: absolute;
     right:0;
+    margin-top: 1rem;
 `

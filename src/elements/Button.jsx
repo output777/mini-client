@@ -80,6 +80,7 @@ const StyledButton = styled.button`
   border-radius: var(--button-radius, 18px);
   background: var(--button-bg-color, #EF4C1E);
   color: var(--button-color, #fff);
+  font-family: 'Pretendard-Regular';
 
   /* &:active,
   &:hover,

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 
 
-const Input = (({ id, name, className, type, placeholder, accept, value, changehandler, text, width , minLength , maxLength}) => {
+const Input = (({ id, name, className, type, placeholder, accept, value, changehandler, text, width, minLength, maxLength }) => {
     return (
         <div className="field">
             <FormInput
@@ -15,8 +15,8 @@ const Input = (({ id, name, className, type, placeholder, accept, value, changeh
                 width={width}
                 value={value}
                 onChange={changehandler}
-                minLength = {minLength}
-                maxLength = {maxLength}
+                minLength={minLength}
+                maxLength={maxLength}
             />
             <ConfirmP>{text}</ConfirmP>
         </div>
@@ -39,10 +39,12 @@ const FormInput = styled.input`
     width : ${(props) => props.width};
     height : ${(props) => props.height};
     padding : ${(props) => props.padding};
+    font-family: 'Pretendard-Regular';
 `
 const ConfirmP = styled.p`
     color : #2C3333;
     font-size: 0.7rem;
     margin : 10px 0;
+    font-family: 'Pretendard-Regular';
 
 `

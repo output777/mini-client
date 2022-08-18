@@ -8,7 +8,7 @@ import Input from "../elements/Input";
 import { __getCamps } from "../redux/modules/campSlice";
 
 
-const Comment = ({ commen}) => {
+const Comment = ({ commen }) => {
     // console.log('commen', commen)
     const dispatch = useDispatch()
 
@@ -34,7 +34,7 @@ const Comment = ({ commen}) => {
             const result = window.confirm('정말 삭제하시겠습니까?')
             e.stopPropagation();
             if (result) {
-                const deletedata = {commentID : commen.id , campingID : id}
+                const deletedata = { commentID: commen.id, campingID: id }
                 await dispatch(__deleteComment(deletedata));
                 await dispatch(__getCamps());
             }
@@ -46,8 +46,8 @@ const Comment = ({ commen}) => {
         const commentText = {
             // nickname: nickname,
             content: comment,
-            campingID : id,
-            commentID : commen.id
+            campingID: id,
+            commentID: commen.id
         }
         await dispatch(__updateComment(commentText));
         await dispatch(__getCamps());
@@ -83,7 +83,7 @@ const Comment = ({ commen}) => {
                                 <>
                                     <Textbox>
                                         {/* <Input className="input" type='text' placeholder='닉네임' width='150px' value={nickname} changehandler={onChangeNickname}></Input> */}
-                                        <Input className="input" type='text' placeholder='댓글' width='700px' value={comment || '' } changehandler={onChangeComment}></Input>
+                                        <Input className="input" type='text' placeholder='댓글' width='700px' value={comment || ''} changehandler={onChangeComment}></Input>
                                     </Textbox>
                                     <Buttonbox>
                                         <Button size='sm' isDisabled={PatchBtn} onClickHandler={onUpdateCommentHandler}>완료</Button>
@@ -115,10 +115,11 @@ const Contentbox = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    font-family: 'Pretendard-Regular';
 `
 
 const Textbox = styled.div`
-    
+    word-break:break-all;
 `
 
 const Buttonbox = styled.div`

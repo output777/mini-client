@@ -54,7 +54,7 @@ const Logincontent = (() => {
         <form onSubmit={(e) => e.preventDefault()} style={{ display: 'flex', alignItems: 'center' }}>
             <RegisterBG>
                 <StyledImg src={BackgroundBG} alt='bg' />
-                <BGh1>Camping</BGh1>
+                <BGh1>Camp</BGh1>
             </RegisterBG>
             <RegisterBox>
                 <Registertitle>Login</Registertitle>
@@ -93,12 +93,14 @@ const BGh1 = styled.h1`
     left:10%;
     position: absolute;
     color:orange;
+    font-family: 'Pretendard-Regular';
 `
 const Registertitle = styled.h2`
     margin-bottom: 20px;
     font-size: 2rem;
     color : #000;
     letter-spacing: 2px;
+    font-family: 'Pretendard-Regular';
 `
 const RegisterBox = styled.div`
     width : 35%;
