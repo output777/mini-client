@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -7,11 +8,14 @@ import Camping from '../assets/imgs/Camping.jpg'
 
 const Item = ({ id, img, location, title, review }) => {
   const navigate = useNavigate();
-  // console.log(img);
+  // const url = window.URL.createObjectURL(new Blob([img], { type: img.headers['content-type'] }));
+  // console.log('img', url)
   const onClickItemHandler = () => {
     // e.preventdefault();
     navigate(`/detail/${id}`)
   }
+
+
 
 
   return (
@@ -19,7 +23,9 @@ const Item = ({ id, img, location, title, review }) => {
       <div className="card" style={{ height: '300px' }}>
         <div className="card-image">
           <figure className="image">
-            <img src={img} alt="Placeholder image" />
+            {img !== null &&
+              <img src={img !== null && img} />
+            }
           </figure>
         </div>
         <div className="card-content">

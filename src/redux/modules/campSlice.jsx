@@ -63,7 +63,7 @@ export const __addCamp = createAsyncThunk('addCamp', async (payload, thunkAPI) =
     // "content-type": "application/json; multipart/form-data", 
     const config = {
       headers: {
-        "content-type": false, "process-data": false, Authorization: localStorage.getItem('token')
+        "Content-type": false, responseType: 'blob', Authorization: localStorage.getItem('token')
 
       }
     }

@@ -86,7 +86,7 @@ const Detailcontent = ({ camps }) => {
 
         <div>
             <Mainbox>
-                <Reviewimg src={reviewimg} alt="" />
+                <Reviewimg src={camp && camp.imgUrl} alt="" />
             </Mainbox>
             <Maincontent>
                 {isEdit ? (
@@ -141,9 +141,10 @@ const Mainbox = styled.div`
 
 `
 const Reviewimg = styled.img`
-    background-size: cover;
+    background-size: contain;
     background-position: center;
-    width:100%;
+    width:800px;
+    height: 500px;
     border-radius: 20px;
     
 `

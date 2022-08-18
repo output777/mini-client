@@ -12,7 +12,7 @@ const List = ({ camps, user }) => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
   const [register, setRegister] = useState(false);
-  // console.log('camps', camps)
+  console.log('camps', camps)
 
 
   const onClickModalHandler = () => {
@@ -34,7 +34,7 @@ const List = ({ camps, user }) => {
               <Item
                 key={data.id}
                 id={data.id}
-                img={data.urlPath}
+                img={data.imgUrl}
                 location={data.location}
                 title={data.title}
                 review={data.review}

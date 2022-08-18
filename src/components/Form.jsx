@@ -133,7 +133,7 @@ const Form = ({ onClickModalHandler }) => {
           </div>
         </div>
       </div>
-    
+
       <div className="field py-4 px-6">
         <label className="label is-size-5">나만의 캠프 리뷰 메시지</label>
         <div className="control">
@@ -143,7 +143,6 @@ const Form = ({ onClickModalHandler }) => {
         </div>
       </div>
 
-    <form onSubmit={onClickAddCampHandler}>
       <div className="field is-grouped py-4 px-6">
 
 
@@ -160,7 +159,6 @@ const Form = ({ onClickModalHandler }) => {
           <Button type='button' className="button is-link is-light" onClickHandler={onClickModalHandler} >Cancel</Button>
         </div>
       </div>
-      </form>
     </StyledFormBox >
   )
 }
