@@ -53,6 +53,7 @@ export const __getCamps = createAsyncThunk('getCamps', async (_, thunkAPI) => {
 export const __addCamp = createAsyncThunk('addCamp', async (payload, thunkAPI) => {
   console.log('payload', payload)
 
+
   for (var value of payload.values()) {
     console.log('formdata value', value);
   }
@@ -63,9 +64,9 @@ export const __addCamp = createAsyncThunk('addCamp', async (payload, thunkAPI) =
     const config = {
       headers: {
         "content-type": false, "process-data": false, Authorization: localStorage.getItem('token')
+
       }
     }
-
     const data = await axios.post('api/auth/camp', payload, config);
     // console.log('data', data);
     return thunkAPI.fulfillWithValue(data.data);

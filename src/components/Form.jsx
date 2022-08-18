@@ -13,7 +13,6 @@ import axios from 'axios';
 
 const Form = ({ onClickModalHandler }) => {
   const dispatch = useDispatch();
-  let navigate = useNavigate();
   const [isDisabled, setIsDisabled] = useState(true)
 
   const [imgFile, setImgFile] = useState(null);
@@ -28,8 +27,6 @@ const Form = ({ onClickModalHandler }) => {
     location: '',
     review: ''
   })
-
-
 
 
   const onChagneTitleHandler = (e) => {
@@ -113,13 +110,12 @@ const Form = ({ onClickModalHandler }) => {
             name='img'
             className="input"
             type="file"
-            accept="image/jpg, image/png, image/jpeg"
+            accept="image/*"
             placeholder="이미지를 넣으려면 클릭하세요"
             changehandler={(e) => onChangeImgHandler(e)}
           />
         </div>
       </div>
-
       <div className="field py-4 px-6">
         <label className="label is-size-5">위치</label>
         <div className="control">
@@ -137,7 +133,7 @@ const Form = ({ onClickModalHandler }) => {
           </div>
         </div>
       </div>
-
+    
       <div className="field py-4 px-6">
         <label className="label is-size-5">나만의 캠프 리뷰 메시지</label>
         <div className="control">
@@ -147,8 +143,9 @@ const Form = ({ onClickModalHandler }) => {
         </div>
       </div>
 
-
+    <form onSubmit={onClickAddCampHandler}>
       <div className="field is-grouped py-4 px-6">
+
 
         <form className="control" onSubmit={(e) => {
           e.preventDefault();
@@ -158,10 +155,12 @@ const Form = ({ onClickModalHandler }) => {
           <Button type='submit' className="button is-link" isDisabled={isDisabled}>Submit</Button>
         </form>
 
+
         <div className="control">
           <Button type='button' className="button is-link is-light" onClickHandler={onClickModalHandler} >Cancel</Button>
         </div>
       </div>
+      </form>
     </StyledFormBox >
   )
 }

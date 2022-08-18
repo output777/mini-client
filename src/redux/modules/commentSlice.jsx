@@ -65,11 +65,18 @@ export const __deleteComment = createAsyncThunk("deleteComment", async (payload,
 
 export const __updateComment = createAsyncThunk("updateComment", async (payload, thunkAPI) => {
   try {
-    await axios.patch(`http://localhost:3001/comment/${payload.id}`, payload);
-    //   console.log(payload)
+    console.log('payload' , payload)
+    const config = {
+      headers: {
+        "Content-Type": 'application/json', Authorization: localStorage.getItem('token')
+      }
+    }
+
+    await axios.put(`api/auth/comment/${payload.campingID}/${payload.commentID}`, payload.content , config);
+    
     return thunkAPI.fulfillWithValue(payload);
   } catch (error) {
-    //   console.log(payload)
+      console.log('error',error)
     return thunkAPI.rejectWithValue(error);
   }
 }
@@ -113,8 +120,8 @@ const commentSlice = createSlice({
     },
     [__deleteComment.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log("state",state.comment)
-      console.log("action",action.payload)
+      // console.log("state",state.comment)
+      // console.log("action",action.payload)
       state.comment = state.comment.filter(comment => comment.id !== action.payload.commentID)
     },
     [__deleteComment.rejected]: (state, action) => {
@@ -126,10 +133,12 @@ const commentSlice = createSlice({
     [__updateComment.pending]: (state) => {
       state.isLoading = true;
     },
-
     [__updateComment.fulfilled]: (state, action) => {
       state.isLoading = false;
+      console.log("state",state.comment)
+      console.log("action",action.payload)
       state.comment = state.comment.map((comment) => {
+        console.log('comment' , comment)
         if (comment.id === action.payload.id) {
           comment = action.payload;
         }
