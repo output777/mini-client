@@ -109,7 +109,7 @@ const Registercontent = () => {
             passwordConfirm: passwordConfirm,
         }
         try {
-            const data = await axios.post('member/signup', newRegister)
+            const data = await axios.post('api/member/signup', newRegister)
             console.log(data);
             navigate('/login')
         } catch (error) {
