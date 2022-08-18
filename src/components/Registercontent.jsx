@@ -130,7 +130,7 @@ const Registercontent = () => {
     return (
         <div style={{ display: 'flex', alignItems: 'center' }}>
             <RegisterBG>
-                <BGh1>Camping</BGh1>
+                <BGh1>Camp</BGh1>
                 <StyledImg src={BackgroundBG} alt='bg' />
             </RegisterBG>
             <RegisterBox>
@@ -200,6 +200,7 @@ const BGh1 = styled.h1`
     left:10%;
     position: absolute;
     color:orange;
+    font-family: 'Pretendard-Regular';
 `
 const Registertitle = styled.h2`
     margin-bottom: 30px;
