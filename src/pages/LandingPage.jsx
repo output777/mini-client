@@ -4,7 +4,7 @@ import Layout from '../components/Layout';
 import Main from '../components/Main';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { useDispatch } from 'react-redux/es/hooks/useDispatch';
-import { __getCamps } from '../redux/modules/campSlice';
+import { __addImg, __getCamps } from '../redux/modules/campSlice';
 
 const LandingPage = () => {
   const dispatch = useDispatch();

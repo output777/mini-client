@@ -29,7 +29,7 @@ const List = ({ camps, user }) => {
         <div>
           <Modal onClickModalHandler={onClickModalHandler} />
           <StyledItemList>
-
+           
             {camps.length !== 0 && camps.map((data) => (
               <Item
                 key={data.id}

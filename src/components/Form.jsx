@@ -143,6 +143,7 @@ const Form = ({ onClickModalHandler }) => {
         </div>
       </div>
 
+
       <div className="field is-grouped py-4 px-6">
 
 
@@ -159,6 +160,9 @@ const Form = ({ onClickModalHandler }) => {
           <Button type='button' className="button is-link is-light" onClickHandler={onClickModalHandler} >Cancel</Button>
         </div>
       </div>
+
+
+  
     </StyledFormBox >
   )
 }
