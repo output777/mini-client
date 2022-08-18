@@ -14,7 +14,6 @@ import axios from 'axios';
 const Form = ({ onClickModalHandler }) => {
   const dispatch = useDispatch();
   const [isDisabled, setIsDisabled] = useState(true)
-
   const [imgFile, setImgFile] = useState(null);
   const [imgUrl, setImgUrl] = useState('');
   const [title, setTitle] = useState('');
