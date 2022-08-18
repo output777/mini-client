@@ -83,7 +83,7 @@ const Comment = ({ commen}) => {
                                 <>
                                     <Textbox>
                                         {/* <Input className="input" type='text' placeholder='닉네임' width='150px' value={nickname} changehandler={onChangeNickname}></Input> */}
-                                        <Input className="input" type='text' placeholder='댓글' width='700px' value={comment} changehandler={onChangeComment}></Input>
+                                        <Input className="input" type='text' placeholder='댓글' width='700px' value={comment || '' } changehandler={onChangeComment}></Input>
                                     </Textbox>
                                     <Buttonbox>
                                         <Button size='sm' isDisabled={PatchBtn} onClickHandler={onUpdateCommentHandler}>완료</Button>
