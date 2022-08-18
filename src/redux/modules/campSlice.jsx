@@ -28,37 +28,32 @@ export const __loginCamp = createAsyncThunk('loginCamp', async (payload, thunkAP
 })
 
 
+
 export const __getCamps = createAsyncThunk('getCamps', async (_, thunkAPI) => {
   try {
     if (localStorage.getItem('token') !== null) {
       const config = {
         headers: {
           Authorization: localStorage.getItem('token')
+
         }
       }
       const data = await axios.get('api/camp', config);
-      // console.log('data', data);
       return thunkAPI.fulfillWithValue({ headers: data.headers, data: data.data });
     } else {
       const data = await axios.get('api/camp');
-      // console.log('data', data);
       return thunkAPI.fulfillWithValue({ headers: data.headers, data: data.data });
     }
   } catch (error) {
-    // console.log('error', error.message)
     return thunkAPI.rejectWithValue(error.message)
   }
 })
 
 export const __addCamp = createAsyncThunk('addCamp', async (payload, thunkAPI) => {
   console.log('payload', payload)
-
-
   for (var value of payload.values()) {
     console.log('formdata value', value);
   }
-
-
   try {
     // "content-type": "application/json; multipart/form-data", 
     const config = {
